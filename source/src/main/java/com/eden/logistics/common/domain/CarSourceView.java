@@ -1,13 +1,19 @@
 package com.eden.logistics.common.domain;
 
-public class CarSource {
+public class CarSourceView {
     private Integer id;
 
     private Integer depatureAreaId;
 
+    private String depatureAreaName;
+
     private Integer destinationAreaId;
 
-    private Integer carType;
+    private String destinationAreaName;
+
+    private Integer carTypeId;
+
+    private String carType;
 
     private String carNumber;
 
@@ -17,9 +23,9 @@ public class CarSource {
 
     private Integer carHeight;
 
-    private Integer carTonnage;
+    private String carTonnage;
 
-    private Integer carVolume;
+    private String carVolume;
 
     private String carSourceDescription;
 
@@ -35,9 +41,13 @@ public class CarSource {
 
     private String contactUserWechat;
 
-    private Long publishTime;
+    private String publishTime;
+
+    private Long publishTimeInt;
 
     private Integer publishUserId;
+
+    private String publishUserNickname;
 
     public Integer getId() {
         return id;
@@ -55,6 +65,14 @@ public class CarSource {
         this.depatureAreaId = depatureAreaId;
     }
 
+    public String getDepatureAreaName() {
+        return depatureAreaName;
+    }
+
+    public void setDepatureAreaName(String depatureAreaName) {
+        this.depatureAreaName = depatureAreaName == null ? null : depatureAreaName.trim();
+    }
+
     public Integer getDestinationAreaId() {
         return destinationAreaId;
     }
@@ -63,12 +81,28 @@ public class CarSource {
         this.destinationAreaId = destinationAreaId;
     }
 
-    public Integer getCarType() {
+    public String getDestinationAreaName() {
+        return destinationAreaName;
+    }
+
+    public void setDestinationAreaName(String destinationAreaName) {
+        this.destinationAreaName = destinationAreaName == null ? null : destinationAreaName.trim();
+    }
+
+    public Integer getCarTypeId() {
+        return carTypeId;
+    }
+
+    public void setCarTypeId(Integer carTypeId) {
+        this.carTypeId = carTypeId;
+    }
+
+    public String getCarType() {
         return carType;
     }
 
-    public void setCarType(Integer carType) {
-        this.carType = carType;
+    public void setCarType(String carType) {
+        this.carType = carType == null ? null : carType.trim();
     }
 
     public String getCarNumber() {
@@ -103,20 +137,20 @@ public class CarSource {
         this.carHeight = carHeight;
     }
 
-    public Integer getCarTonnage() {
+    public String getCarTonnage() {
         return carTonnage;
     }
 
-    public void setCarTonnage(Integer carTonnage) {
-        this.carTonnage = carTonnage;
+    public void setCarTonnage(String carTonnage) {
+        this.carTonnage = carTonnage == null ? null : carTonnage.trim();
     }
 
-    public Integer getCarVolume() {
+    public String getCarVolume() {
         return carVolume;
     }
 
-    public void setCarVolume(Integer carVolume) {
-        this.carVolume = carVolume;
+    public void setCarVolume(String carVolume) {
+        this.carVolume = carVolume == null ? null : carVolume.trim();
     }
 
     public String getCarSourceDescription() {
@@ -175,12 +209,20 @@ public class CarSource {
         this.contactUserWechat = contactUserWechat == null ? null : contactUserWechat.trim();
     }
 
-    public Long getPublishTime() {
+    public String getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(Long publishTime) {
-        this.publishTime = publishTime;
+    public void setPublishTime(String publishTime) {
+        this.publishTime = publishTime == null ? null : publishTime.trim();
+    }
+
+    public Long getPublishTimeInt() {
+        return publishTimeInt;
+    }
+
+    public void setPublishTimeInt(Long publishTimeInt) {
+        this.publishTimeInt = publishTimeInt;
     }
 
     public Integer getPublishUserId() {
@@ -189,5 +231,13 @@ public class CarSource {
 
     public void setPublishUserId(Integer publishUserId) {
         this.publishUserId = publishUserId;
+    }
+
+    public String getPublishUserNickname() {
+        return publishUserNickname;
+    }
+
+    public void setPublishUserNickname(String publishUserNickname) {
+        this.publishUserNickname = publishUserNickname == null ? null : publishUserNickname.trim();
     }
 }

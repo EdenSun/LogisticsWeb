@@ -53,7 +53,7 @@ public class GoodsSource {
 
     private String contactUserWechat;
 
-    private Date publishTime;
+    private Long publishTime;
 
     private Integer publishUserId;
 
@@ -257,11 +257,11 @@ public class GoodsSource {
         this.contactUserWechat = contactUserWechat == null ? null : contactUserWechat.trim();
     }
 
-    public Date getPublishTime() {
+    public Long getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(Date publishTime) {
+    public void setPublishTime(Long publishTime) {
         this.publishTime = publishTime;
     }
 

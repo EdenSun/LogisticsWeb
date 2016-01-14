@@ -1,7 +1,5 @@
 package com.eden.logistics.common.domain;
 
-import java.util.Date;
-
 public class User {
     private Integer id;
 
@@ -17,9 +15,9 @@ public class User {
 
     private String verifyCode;
 
-    private Date verifyCodeGenerateTime;
+    private Long verifyCodeGenerateTime;
 
-    private Date registerTime;
+    private Long registerTime;
 
     public Integer getId() {
         return id;
@@ -77,19 +75,19 @@ public class User {
         this.verifyCode = verifyCode == null ? null : verifyCode.trim();
     }
 
-    public Date getVerifyCodeGenerateTime() {
+    public Long getVerifyCodeGenerateTime() {
         return verifyCodeGenerateTime;
     }
 
-    public void setVerifyCodeGenerateTime(Date verifyCodeGenerateTime) {
+    public void setVerifyCodeGenerateTime(Long verifyCodeGenerateTime) {
         this.verifyCodeGenerateTime = verifyCodeGenerateTime;
     }
 
-    public Date getRegisterTime() {
+    public Long getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(Date registerTime) {
+    public void setRegisterTime(Long registerTime) {
         this.registerTime = registerTime;
     }
 }

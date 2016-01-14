@@ -1,4 +1,4 @@
-package com.eden.logistics.api.dto.param;
+package com.eden.logistics.common.dto.param;
 
 public class ListGoodsSourceByCondParam {
 

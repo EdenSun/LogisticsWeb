@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.eden.logistics.common.dao.CarSourceMapper" >
-  <resultMap id="BaseResultMap" type="com.eden.logistics.common.domain.CarSource" >
-    <id column="ID" property="id" jdbcType="INTEGER" />
+<mapper namespace="com.eden.logistics.common.dao.CarSourceViewMapper" >
+  <resultMap id="BaseResultMap" type="com.eden.logistics.common.domain.CarSourceView" >
+    <result column="ID" property="id" jdbcType="INTEGER" />
     <result column="DEPATURE_AREA_ID" property="depatureAreaId" jdbcType="INTEGER" />
+    <result column="DEPATURE_AREA_NAME" property="depatureAreaName" jdbcType="VARCHAR" />
     <result column="DESTINATION_AREA_ID" property="destinationAreaId" jdbcType="INTEGER" />
-    <result column="CAR_TYPE" property="carType" jdbcType="INTEGER" />
+    <result column="DESTINATION_AREA_NAME" property="destinationAreaName" jdbcType="VARCHAR" />
+    <result column="CAR_TYPE_ID" property="carTypeId" jdbcType="INTEGER" />
+    <result column="CAR_TYPE" property="carType" jdbcType="VARCHAR" />
     <result column="CAR_NUMBER" property="carNumber" jdbcType="VARCHAR" />
     <result column="CAR_LENGTH" property="carLength" jdbcType="INTEGER" />
     <result column="CAR_WIDTH" property="carWidth" jdbcType="INTEGER" />
     <result column="CAR_HEIGHT" property="carHeight" jdbcType="INTEGER" />
-    <result column="CAR_TONNAGE" property="carTonnage" jdbcType="INTEGER" />
-    <result column="CAR_VOLUME" property="carVolume" jdbcType="INTEGER" />
+    <result column="CAR_TONNAGE" property="carTonnage" jdbcType="VARCHAR" />
+    <result column="CAR_VOLUME" property="carVolume" jdbcType="VARCHAR" />
     <result column="CAR_SOURCE_DESCRIPTION" property="carSourceDescription" jdbcType="VARCHAR" />
     <result column="CONTACT_USER_NAME" property="contactUserName" jdbcType="VARCHAR" />
     <result column="CONTACT_USER_MOBILE" property="contactUserMobile" jdbcType="VARCHAR" />
@@ -19,8 +22,10 @@
     <result column="CONTACT_USER_EMAIL" property="contactUserEmail" jdbcType="VARCHAR" />
     <result column="CONTACT_USER_QQ" property="contactUserQq" jdbcType="VARCHAR" />
     <result column="CONTACT_USER_WECHAT" property="contactUserWechat" jdbcType="VARCHAR" />
-    <result column="PUBLISH_TIME" property="publishTime" jdbcType="BIGINT" />
+    <result column="PUBLISH_TIME" property="publishTime" jdbcType="VARCHAR" />
+    <result column="PUBLISH_TIME_INT" property="publishTimeInt" jdbcType="BIGINT" />
     <result column="PUBLISH_USER_ID" property="publishUserId" jdbcType="INTEGER" />
+    <result column="PUBLISH_USER_NICKNAME" property="publishUserNickname" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -81,18 +86,19 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, DEPATURE_AREA_ID, DESTINATION_AREA_ID, CAR_TYPE, CAR_NUMBER, CAR_LENGTH, CAR_WIDTH, 
-    CAR_HEIGHT, CAR_TONNAGE, CAR_VOLUME, CAR_SOURCE_DESCRIPTION, CONTACT_USER_NAME, CONTACT_USER_MOBILE, 
-    CONTACT_USER_PHONE, CONTACT_USER_EMAIL, CONTACT_USER_QQ, CONTACT_USER_WECHAT, PUBLISH_TIME, 
-    PUBLISH_USER_ID
+    ID, DEPATURE_AREA_ID, DEPATURE_AREA_NAME, DESTINATION_AREA_ID, DESTINATION_AREA_NAME, 
+    CAR_TYPE_ID, CAR_TYPE, CAR_NUMBER, CAR_LENGTH, CAR_WIDTH, CAR_HEIGHT, CAR_TONNAGE, 
+    CAR_VOLUME, CAR_SOURCE_DESCRIPTION, CONTACT_USER_NAME, CONTACT_USER_MOBILE, CONTACT_USER_PHONE, 
+    CONTACT_USER_EMAIL, CONTACT_USER_QQ, CONTACT_USER_WECHAT, PUBLISH_TIME, PUBLISH_TIME_INT, 
+    PUBLISH_USER_ID, PUBLISH_USER_NICKNAME
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.CarSourceExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.CarSourceViewExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tbl_car_source
+    from vw_car_source
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -100,52 +106,52 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from tbl_car_source
-    where ID = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from tbl_car_source
-    where ID = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.eden.logistics.common.domain.CarSourceExample" >
-    delete from tbl_car_source
+  <delete id="deleteByExample" parameterType="com.eden.logistics.common.domain.CarSourceViewExample" >
+    delete from vw_car_source
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.eden.logistics.common.domain.CarSource" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into tbl_car_source (DEPATURE_AREA_ID, DESTINATION_AREA_ID, 
-      CAR_TYPE, CAR_NUMBER, CAR_LENGTH, 
-      CAR_WIDTH, CAR_HEIGHT, CAR_TONNAGE, 
-      CAR_VOLUME, CAR_SOURCE_DESCRIPTION, CONTACT_USER_NAME, 
-      CONTACT_USER_MOBILE, CONTACT_USER_PHONE, CONTACT_USER_EMAIL, 
-      CONTACT_USER_QQ, CONTACT_USER_WECHAT, PUBLISH_TIME, 
-      PUBLISH_USER_ID)
-    values (#{depatureAreaId,jdbcType=INTEGER}, #{destinationAreaId,jdbcType=INTEGER}, 
-      #{carType,jdbcType=INTEGER}, #{carNumber,jdbcType=VARCHAR}, #{carLength,jdbcType=INTEGER}, 
-      #{carWidth,jdbcType=INTEGER}, #{carHeight,jdbcType=INTEGER}, #{carTonnage,jdbcType=INTEGER}, 
-      #{carVolume,jdbcType=INTEGER}, #{carSourceDescription,jdbcType=VARCHAR}, #{contactUserName,jdbcType=VARCHAR}, 
-      #{contactUserMobile,jdbcType=VARCHAR}, #{contactUserPhone,jdbcType=VARCHAR}, #{contactUserEmail,jdbcType=VARCHAR}, 
-      #{contactUserQq,jdbcType=VARCHAR}, #{contactUserWechat,jdbcType=VARCHAR}, #{publishTime,jdbcType=BIGINT}, 
-      #{publishUserId,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.eden.logistics.common.domain.CarSourceView" >
+    insert into vw_car_source (ID, DEPATURE_AREA_ID, DEPATURE_AREA_NAME, 
+      DESTINATION_AREA_ID, DESTINATION_AREA_NAME, 
+      CAR_TYPE_ID, CAR_TYPE, CAR_NUMBER, 
+      CAR_LENGTH, CAR_WIDTH, CAR_HEIGHT, 
+      CAR_TONNAGE, CAR_VOLUME, CAR_SOURCE_DESCRIPTION, 
+      CONTACT_USER_NAME, CONTACT_USER_MOBILE, CONTACT_USER_PHONE, 
+      CONTACT_USER_EMAIL, CONTACT_USER_QQ, CONTACT_USER_WECHAT, 
+      PUBLISH_TIME, PUBLISH_TIME_INT, PUBLISH_USER_ID, 
+      PUBLISH_USER_NICKNAME)
+    values (#{id,jdbcType=INTEGER}, #{depatureAreaId,jdbcType=INTEGER}, #{depatureAreaName,jdbcType=VARCHAR}, 
+      #{destinationAreaId,jdbcType=INTEGER}, #{destinationAreaName,jdbcType=VARCHAR}, 
+      #{carTypeId,jdbcType=INTEGER}, #{carType,jdbcType=VARCHAR}, #{carNumber,jdbcType=VARCHAR}, 
+      #{carLength,jdbcType=INTEGER}, #{carWidth,jdbcType=INTEGER}, #{carHeight,jdbcType=INTEGER}, 
+      #{carTonnage,jdbcType=VARCHAR}, #{carVolume,jdbcType=VARCHAR}, #{carSourceDescription,jdbcType=VARCHAR}, 
+      #{contactUserName,jdbcType=VARCHAR}, #{contactUserMobile,jdbcType=VARCHAR}, #{contactUserPhone,jdbcType=VARCHAR}, 
+      #{contactUserEmail,jdbcType=VARCHAR}, #{contactUserQq,jdbcType=VARCHAR}, #{contactUserWechat,jdbcType=VARCHAR}, 
+      #{publishTime,jdbcType=VARCHAR}, #{publishTimeInt,jdbcType=BIGINT}, #{publishUserId,jdbcType=INTEGER}, 
+      #{publishUserNickname,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.eden.logistics.common.domain.CarSource" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into tbl_car_source
+  <insert id="insertSelective" parameterType="com.eden.logistics.common.domain.CarSourceView" >
+    insert into vw_car_source
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
       <if test="depatureAreaId != null" >
         DEPATURE_AREA_ID,
       </if>
+      <if test="depatureAreaName != null" >
+        DEPATURE_AREA_NAME,
+      </if>
       <if test="destinationAreaId != null" >
         DESTINATION_AREA_ID,
+      </if>
+      <if test="destinationAreaName != null" >
+        DESTINATION_AREA_NAME,
+      </if>
+      <if test="carTypeId != null" >
+        CAR_TYPE_ID,
       </if>
       <if test="carType != null" >
         CAR_TYPE,
@@ -192,19 +198,37 @@
       <if test="publishTime != null" >
         PUBLISH_TIME,
       </if>
+      <if test="publishTimeInt != null" >
+        PUBLISH_TIME_INT,
+      </if>
       <if test="publishUserId != null" >
         PUBLISH_USER_ID,
       </if>
+      <if test="publishUserNickname != null" >
+        PUBLISH_USER_NICKNAME,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="depatureAreaId != null" >
         #{depatureAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="depatureAreaName != null" >
+        #{depatureAreaName,jdbcType=VARCHAR},
       </if>
       <if test="destinationAreaId != null" >
         #{destinationAreaId,jdbcType=INTEGER},
       </if>
+      <if test="destinationAreaName != null" >
+        #{destinationAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="carTypeId != null" >
+        #{carTypeId,jdbcType=INTEGER},
+      </if>
       <if test="carType != null" >
-        #{carType,jdbcType=INTEGER},
+        #{carType,jdbcType=VARCHAR},
       </if>
       <if test="carNumber != null" >
         #{carNumber,jdbcType=VARCHAR},
@@ -219,10 +243,10 @@
         #{carHeight,jdbcType=INTEGER},
       </if>
       <if test="carTonnage != null" >
-        #{carTonnage,jdbcType=INTEGER},
+        #{carTonnage,jdbcType=VARCHAR},
       </if>
       <if test="carVolume != null" >
-        #{carVolume,jdbcType=INTEGER},
+        #{carVolume,jdbcType=VARCHAR},
       </if>
       <if test="carSourceDescription != null" >
         #{carSourceDescription,jdbcType=VARCHAR},
@@ -246,21 +270,27 @@
         #{contactUserWechat,jdbcType=VARCHAR},
       </if>
       <if test="publishTime != null" >
-        #{publishTime,jdbcType=BIGINT},
+        #{publishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTimeInt != null" >
+        #{publishTimeInt,jdbcType=BIGINT},
       </if>
       <if test="publishUserId != null" >
         #{publishUserId,jdbcType=INTEGER},
       </if>
+      <if test="publishUserNickname != null" >
+        #{publishUserNickname,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.eden.logistics.common.domain.CarSourceExample" resultType="java.lang.Integer" >
-    select count(*) from tbl_car_source
+  <select id="countByExample" parameterType="com.eden.logistics.common.domain.CarSourceViewExample" resultType="java.lang.Integer" >
+    select count(*) from vw_car_source
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tbl_car_source
+    update vw_car_source
     <set >
       <if test="record.id != null" >
         ID = #{record.id,jdbcType=INTEGER},
@@ -268,11 +298,20 @@
       <if test="record.depatureAreaId != null" >
         DEPATURE_AREA_ID = #{record.depatureAreaId,jdbcType=INTEGER},
       </if>
+      <if test="record.depatureAreaName != null" >
+        DEPATURE_AREA_NAME = #{record.depatureAreaName,jdbcType=VARCHAR},
+      </if>
       <if test="record.destinationAreaId != null" >
         DESTINATION_AREA_ID = #{record.destinationAreaId,jdbcType=INTEGER},
       </if>
+      <if test="record.destinationAreaName != null" >
+        DESTINATION_AREA_NAME = #{record.destinationAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carTypeId != null" >
+        CAR_TYPE_ID = #{record.carTypeId,jdbcType=INTEGER},
+      </if>
       <if test="record.carType != null" >
-        CAR_TYPE = #{record.carType,jdbcType=INTEGER},
+        CAR_TYPE = #{record.carType,jdbcType=VARCHAR},
       </if>
       <if test="record.carNumber != null" >
         CAR_NUMBER = #{record.carNumber,jdbcType=VARCHAR},
@@ -287,10 +326,10 @@
         CAR_HEIGHT = #{record.carHeight,jdbcType=INTEGER},
       </if>
       <if test="record.carTonnage != null" >
-        CAR_TONNAGE = #{record.carTonnage,jdbcType=INTEGER},
+        CAR_TONNAGE = #{record.carTonnage,jdbcType=VARCHAR},
       </if>
       <if test="record.carVolume != null" >
-        CAR_VOLUME = #{record.carVolume,jdbcType=INTEGER},
+        CAR_VOLUME = #{record.carVolume,jdbcType=VARCHAR},
       </if>
       <if test="record.carSourceDescription != null" >
         CAR_SOURCE_DESCRIPTION = #{record.carSourceDescription,jdbcType=VARCHAR},
@@ -314,10 +353,16 @@
         CONTACT_USER_WECHAT = #{record.contactUserWechat,jdbcType=VARCHAR},
       </if>
       <if test="record.publishTime != null" >
-        PUBLISH_TIME = #{record.publishTime,jdbcType=BIGINT},
+        PUBLISH_TIME = #{record.publishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishTimeInt != null" >
+        PUBLISH_TIME_INT = #{record.publishTimeInt,jdbcType=BIGINT},
       </if>
       <if test="record.publishUserId != null" >
         PUBLISH_USER_ID = #{record.publishUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishUserNickname != null" >
+        PUBLISH_USER_NICKNAME = #{record.publishUserNickname,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -325,17 +370,20 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tbl_car_source
+    update vw_car_source
     set ID = #{record.id,jdbcType=INTEGER},
       DEPATURE_AREA_ID = #{record.depatureAreaId,jdbcType=INTEGER},
+      DEPATURE_AREA_NAME = #{record.depatureAreaName,jdbcType=VARCHAR},
       DESTINATION_AREA_ID = #{record.destinationAreaId,jdbcType=INTEGER},
-      CAR_TYPE = #{record.carType,jdbcType=INTEGER},
+      DESTINATION_AREA_NAME = #{record.destinationAreaName,jdbcType=VARCHAR},
+      CAR_TYPE_ID = #{record.carTypeId,jdbcType=INTEGER},
+      CAR_TYPE = #{record.carType,jdbcType=VARCHAR},
       CAR_NUMBER = #{record.carNumber,jdbcType=VARCHAR},
       CAR_LENGTH = #{record.carLength,jdbcType=INTEGER},
       CAR_WIDTH = #{record.carWidth,jdbcType=INTEGER},
       CAR_HEIGHT = #{record.carHeight,jdbcType=INTEGER},
-      CAR_TONNAGE = #{record.carTonnage,jdbcType=INTEGER},
-      CAR_VOLUME = #{record.carVolume,jdbcType=INTEGER},
+      CAR_TONNAGE = #{record.carTonnage,jdbcType=VARCHAR},
+      CAR_VOLUME = #{record.carVolume,jdbcType=VARCHAR},
       CAR_SOURCE_DESCRIPTION = #{record.carSourceDescription,jdbcType=VARCHAR},
       CONTACT_USER_NAME = #{record.contactUserName,jdbcType=VARCHAR},
       CONTACT_USER_MOBILE = #{record.contactUserMobile,jdbcType=VARCHAR},
@@ -343,101 +391,21 @@
       CONTACT_USER_EMAIL = #{record.contactUserEmail,jdbcType=VARCHAR},
       CONTACT_USER_QQ = #{record.contactUserQq,jdbcType=VARCHAR},
       CONTACT_USER_WECHAT = #{record.contactUserWechat,jdbcType=VARCHAR},
-      PUBLISH_TIME = #{record.publishTime,jdbcType=BIGINT},
-      PUBLISH_USER_ID = #{record.publishUserId,jdbcType=INTEGER}
+      PUBLISH_TIME = #{record.publishTime,jdbcType=VARCHAR},
+      PUBLISH_TIME_INT = #{record.publishTimeInt,jdbcType=BIGINT},
+      PUBLISH_USER_ID = #{record.publishUserId,jdbcType=INTEGER},
+      PUBLISH_USER_NICKNAME = #{record.publishUserNickname,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.eden.logistics.common.domain.CarSource" >
-    update tbl_car_source
-    <set >
-      <if test="depatureAreaId != null" >
-        DEPATURE_AREA_ID = #{depatureAreaId,jdbcType=INTEGER},
-      </if>
-      <if test="destinationAreaId != null" >
-        DESTINATION_AREA_ID = #{destinationAreaId,jdbcType=INTEGER},
-      </if>
-      <if test="carType != null" >
-        CAR_TYPE = #{carType,jdbcType=INTEGER},
-      </if>
-      <if test="carNumber != null" >
-        CAR_NUMBER = #{carNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="carLength != null" >
-        CAR_LENGTH = #{carLength,jdbcType=INTEGER},
-      </if>
-      <if test="carWidth != null" >
-        CAR_WIDTH = #{carWidth,jdbcType=INTEGER},
-      </if>
-      <if test="carHeight != null" >
-        CAR_HEIGHT = #{carHeight,jdbcType=INTEGER},
-      </if>
-      <if test="carTonnage != null" >
-        CAR_TONNAGE = #{carTonnage,jdbcType=INTEGER},
-      </if>
-      <if test="carVolume != null" >
-        CAR_VOLUME = #{carVolume,jdbcType=INTEGER},
-      </if>
-      <if test="carSourceDescription != null" >
-        CAR_SOURCE_DESCRIPTION = #{carSourceDescription,jdbcType=VARCHAR},
-      </if>
-      <if test="contactUserName != null" >
-        CONTACT_USER_NAME = #{contactUserName,jdbcType=VARCHAR},
-      </if>
-      <if test="contactUserMobile != null" >
-        CONTACT_USER_MOBILE = #{contactUserMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="contactUserPhone != null" >
-        CONTACT_USER_PHONE = #{contactUserPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="contactUserEmail != null" >
-        CONTACT_USER_EMAIL = #{contactUserEmail,jdbcType=VARCHAR},
-      </if>
-      <if test="contactUserQq != null" >
-        CONTACT_USER_QQ = #{contactUserQq,jdbcType=VARCHAR},
-      </if>
-      <if test="contactUserWechat != null" >
-        CONTACT_USER_WECHAT = #{contactUserWechat,jdbcType=VARCHAR},
-      </if>
-      <if test="publishTime != null" >
-        PUBLISH_TIME = #{publishTime,jdbcType=BIGINT},
-      </if>
-      <if test="publishUserId != null" >
-        PUBLISH_USER_ID = #{publishUserId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.eden.logistics.common.domain.CarSource" >
-    update tbl_car_source
-    set DEPATURE_AREA_ID = #{depatureAreaId,jdbcType=INTEGER},
-      DESTINATION_AREA_ID = #{destinationAreaId,jdbcType=INTEGER},
-      CAR_TYPE = #{carType,jdbcType=INTEGER},
-      CAR_NUMBER = #{carNumber,jdbcType=VARCHAR},
-      CAR_LENGTH = #{carLength,jdbcType=INTEGER},
-      CAR_WIDTH = #{carWidth,jdbcType=INTEGER},
-      CAR_HEIGHT = #{carHeight,jdbcType=INTEGER},
-      CAR_TONNAGE = #{carTonnage,jdbcType=INTEGER},
-      CAR_VOLUME = #{carVolume,jdbcType=INTEGER},
-      CAR_SOURCE_DESCRIPTION = #{carSourceDescription,jdbcType=VARCHAR},
-      CONTACT_USER_NAME = #{contactUserName,jdbcType=VARCHAR},
-      CONTACT_USER_MOBILE = #{contactUserMobile,jdbcType=VARCHAR},
-      CONTACT_USER_PHONE = #{contactUserPhone,jdbcType=VARCHAR},
-      CONTACT_USER_EMAIL = #{contactUserEmail,jdbcType=VARCHAR},
-      CONTACT_USER_QQ = #{contactUserQq,jdbcType=VARCHAR},
-      CONTACT_USER_WECHAT = #{contactUserWechat,jdbcType=VARCHAR},
-      PUBLISH_TIME = #{publishTime,jdbcType=BIGINT},
-      PUBLISH_USER_ID = #{publishUserId,jdbcType=INTEGER}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <select resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.CarSourceExample" id="selectByExampleWithRowbounds" >
+  <select resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.CarSourceViewExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tbl_car_source
+    from vw_car_source
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>

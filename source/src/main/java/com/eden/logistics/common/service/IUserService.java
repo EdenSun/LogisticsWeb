@@ -17,4 +17,6 @@ public interface IUserService {
 	UserView getUserViewByMobile(String mobile)throws ServiceException;
 	
 	User getByMobile(String mobile)throws ServiceException;
+
+	User getByAccessToken(String token)throws ServiceException;
 }

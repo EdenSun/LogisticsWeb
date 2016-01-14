@@ -97,7 +97,7 @@ public class UserServiceImpl implements IUserService {
 		user.setNickname(param.getNickname());
 		user.setMobile(param.getMobile());
 		user.setPassword(param.getPassword());
-		user.setRegisterTime(new Date());
+		user.setRegisterTime(new Date().getTime());
 		user.setVerifyCode(null);
 		user.setVerifyCodeGenerateTime(null);
 		update(user);
@@ -119,7 +119,7 @@ public class UserServiceImpl implements IUserService {
 			
 			Date now = new Date();
 			if( user != null && user.getVerifyCodeGenerateTime() != null ){
-				long secondDiff = DateHelper.secondDiff(user.getVerifyCodeGenerateTime(), now);
+				long secondDiff = DateHelper.secondDiff( new Date(user.getVerifyCodeGenerateTime()), now);
 				if( secondDiff < 60 ){
 					throw new ServiceException("获取验证码过于频繁，请1分钟后再试");
 				}
@@ -127,7 +127,7 @@ public class UserServiceImpl implements IUserService {
 			
 			String verifyCode = String.valueOf(RadomNumberHelper.get6BitRadomNumber());
 			user.setVerifyCode(verifyCode);
-			user.setVerifyCodeGenerateTime(now);
+			user.setVerifyCodeGenerateTime(now.getTime());
 			update(user);
 			
 			/*String content = TemplateUtil.replace(TemplateConstants.STUDENT_REGISTER_SMS_CONTENT,1,verifyCode);
@@ -189,6 +189,21 @@ public class UserServiceImpl implements IUserService {
 		userMapper.insertSelective(user);
 		
 		return user;
+	}
+
+
+	@Override
+	public User getByAccessToken(String token) throws ServiceException {
+		UserExample example = new UserExample();
+		UserExample.Criteria c = example.createCriteria();
+		
+		c.andAccessTokenEqualTo(token);
+		
+		List<User> list = userMapper.selectByExample(example);
+		if( list != null && list.size() > 0 ){
+			return list.get(0);
+		}
+		return null;
 	}
 	
 }

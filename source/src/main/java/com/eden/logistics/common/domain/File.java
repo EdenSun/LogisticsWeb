@@ -1,7 +1,5 @@
 package com.eden.logistics.common.domain;
 
-import java.util.Date;
-
 public class File {
     private Integer id;
 
@@ -17,7 +15,7 @@ public class File {
 
     private Integer creatorUserId;
 
-    private Date createTime;
+    private Long createTime;
 
     public Integer getId() {
         return id;
@@ -75,11 +73,11 @@ public class File {
         this.creatorUserId = creatorUserId;
     }
 
-    public Date getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 }

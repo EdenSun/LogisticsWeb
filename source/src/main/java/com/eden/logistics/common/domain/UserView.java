@@ -1,7 +1,5 @@
 package com.eden.logistics.common.domain;
 
-import java.util.Date;
-
 public class UserView {
     private Integer id;
 
@@ -15,13 +13,13 @@ public class UserView {
 
     private String registerTimeText;
 
-    private Date registerTime;
+    private Long registerTime;
 
     private String verifyCode;
 
     private String verifyCodeGenerateTimeText;
 
-    private Date verifyCodeGenerateTime;
+    private Long verifyCodeGenerateTime;
 
     private String userHead;
 
@@ -73,11 +71,11 @@ public class UserView {
         this.registerTimeText = registerTimeText == null ? null : registerTimeText.trim();
     }
 
-    public Date getRegisterTime() {
+    public Long getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(Date registerTime) {
+    public void setRegisterTime(Long registerTime) {
         this.registerTime = registerTime;
     }
 
@@ -97,11 +95,11 @@ public class UserView {
         this.verifyCodeGenerateTimeText = verifyCodeGenerateTimeText == null ? null : verifyCodeGenerateTimeText.trim();
     }
 
-    public Date getVerifyCodeGenerateTime() {
+    public Long getVerifyCodeGenerateTime() {
         return verifyCodeGenerateTime;
     }
 
-    public void setVerifyCodeGenerateTime(Date verifyCodeGenerateTime) {
+    public void setVerifyCodeGenerateTime(Long verifyCodeGenerateTime) {
         this.verifyCodeGenerateTime = verifyCodeGenerateTime;
     }
 

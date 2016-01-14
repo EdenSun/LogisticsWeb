@@ -1,7 +1,6 @@
 package com.eden.logistics.common.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class UserExample {
@@ -585,52 +584,52 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andVerifyCodeGenerateTimeEqualTo(Date value) {
+        public Criteria andVerifyCodeGenerateTimeEqualTo(Long value) {
             addCriterion("VERIFY_CODE_GENERATE_TIME =", value, "verifyCodeGenerateTime");
             return (Criteria) this;
         }
 
-        public Criteria andVerifyCodeGenerateTimeNotEqualTo(Date value) {
+        public Criteria andVerifyCodeGenerateTimeNotEqualTo(Long value) {
             addCriterion("VERIFY_CODE_GENERATE_TIME <>", value, "verifyCodeGenerateTime");
             return (Criteria) this;
         }
 
-        public Criteria andVerifyCodeGenerateTimeGreaterThan(Date value) {
+        public Criteria andVerifyCodeGenerateTimeGreaterThan(Long value) {
             addCriterion("VERIFY_CODE_GENERATE_TIME >", value, "verifyCodeGenerateTime");
             return (Criteria) this;
         }
 
-        public Criteria andVerifyCodeGenerateTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andVerifyCodeGenerateTimeGreaterThanOrEqualTo(Long value) {
             addCriterion("VERIFY_CODE_GENERATE_TIME >=", value, "verifyCodeGenerateTime");
             return (Criteria) this;
         }
 
-        public Criteria andVerifyCodeGenerateTimeLessThan(Date value) {
+        public Criteria andVerifyCodeGenerateTimeLessThan(Long value) {
             addCriterion("VERIFY_CODE_GENERATE_TIME <", value, "verifyCodeGenerateTime");
             return (Criteria) this;
         }
 
-        public Criteria andVerifyCodeGenerateTimeLessThanOrEqualTo(Date value) {
+        public Criteria andVerifyCodeGenerateTimeLessThanOrEqualTo(Long value) {
             addCriterion("VERIFY_CODE_GENERATE_TIME <=", value, "verifyCodeGenerateTime");
             return (Criteria) this;
         }
 
-        public Criteria andVerifyCodeGenerateTimeIn(List<Date> values) {
+        public Criteria andVerifyCodeGenerateTimeIn(List<Long> values) {
             addCriterion("VERIFY_CODE_GENERATE_TIME in", values, "verifyCodeGenerateTime");
             return (Criteria) this;
         }
 
-        public Criteria andVerifyCodeGenerateTimeNotIn(List<Date> values) {
+        public Criteria andVerifyCodeGenerateTimeNotIn(List<Long> values) {
             addCriterion("VERIFY_CODE_GENERATE_TIME not in", values, "verifyCodeGenerateTime");
             return (Criteria) this;
         }
 
-        public Criteria andVerifyCodeGenerateTimeBetween(Date value1, Date value2) {
+        public Criteria andVerifyCodeGenerateTimeBetween(Long value1, Long value2) {
             addCriterion("VERIFY_CODE_GENERATE_TIME between", value1, value2, "verifyCodeGenerateTime");
             return (Criteria) this;
         }
 
-        public Criteria andVerifyCodeGenerateTimeNotBetween(Date value1, Date value2) {
+        public Criteria andVerifyCodeGenerateTimeNotBetween(Long value1, Long value2) {
             addCriterion("VERIFY_CODE_GENERATE_TIME not between", value1, value2, "verifyCodeGenerateTime");
             return (Criteria) this;
         }
@@ -645,52 +644,52 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andRegisterTimeEqualTo(Date value) {
+        public Criteria andRegisterTimeEqualTo(Long value) {
             addCriterion("REGISTER_TIME =", value, "registerTime");
             return (Criteria) this;
         }
 
-        public Criteria andRegisterTimeNotEqualTo(Date value) {
+        public Criteria andRegisterTimeNotEqualTo(Long value) {
             addCriterion("REGISTER_TIME <>", value, "registerTime");
             return (Criteria) this;
         }
 
-        public Criteria andRegisterTimeGreaterThan(Date value) {
+        public Criteria andRegisterTimeGreaterThan(Long value) {
             addCriterion("REGISTER_TIME >", value, "registerTime");
             return (Criteria) this;
         }
 
-        public Criteria andRegisterTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andRegisterTimeGreaterThanOrEqualTo(Long value) {
             addCriterion("REGISTER_TIME >=", value, "registerTime");
             return (Criteria) this;
         }
 
-        public Criteria andRegisterTimeLessThan(Date value) {
+        public Criteria andRegisterTimeLessThan(Long value) {
             addCriterion("REGISTER_TIME <", value, "registerTime");
             return (Criteria) this;
         }
 
-        public Criteria andRegisterTimeLessThanOrEqualTo(Date value) {
+        public Criteria andRegisterTimeLessThanOrEqualTo(Long value) {
             addCriterion("REGISTER_TIME <=", value, "registerTime");
             return (Criteria) this;
         }
 
-        public Criteria andRegisterTimeIn(List<Date> values) {
+        public Criteria andRegisterTimeIn(List<Long> values) {
             addCriterion("REGISTER_TIME in", values, "registerTime");
             return (Criteria) this;
         }
 
-        public Criteria andRegisterTimeNotIn(List<Date> values) {
+        public Criteria andRegisterTimeNotIn(List<Long> values) {
             addCriterion("REGISTER_TIME not in", values, "registerTime");
             return (Criteria) this;
         }
 
-        public Criteria andRegisterTimeBetween(Date value1, Date value2) {
+        public Criteria andRegisterTimeBetween(Long value1, Long value2) {
             addCriterion("REGISTER_TIME between", value1, value2, "registerTime");
             return (Criteria) this;
         }
 
-        public Criteria andRegisterTimeNotBetween(Date value1, Date value2) {
+        public Criteria andRegisterTimeNotBetween(Long value1, Long value2) {
             addCriterion("REGISTER_TIME not between", value1, value2, "registerTime");
             return (Criteria) this;
         }

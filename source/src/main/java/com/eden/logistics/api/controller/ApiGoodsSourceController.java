@@ -9,10 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.eden.logistics.api.dto.param.CreateGoodsSourceParam;
-import com.eden.logistics.api.dto.param.GoodsSourceListItemView;
-import com.eden.logistics.api.dto.param.ListGoodsSourceByCondParam;
+import com.eden.logistics.api.dto.view.GoodsSourceListItemView;
 import com.eden.logistics.api.service.IApiGoodsSourceService;
+import com.eden.logistics.common.dto.param.CreateGoodsSourceParam;
+import com.eden.logistics.common.dto.param.ListGoodsSourceByCondParam;
 import com.eden.logistics.common.dto.view.View;
 import com.eden.logistics.common.util.Constants;
 
@@ -28,7 +28,7 @@ public class ApiGoodsSourceController {
 	public View<Boolean> create(@ModelAttribute("param")CreateGoodsSourceParam param){
 		String token = request.getHeader(Constants.HTTP_HEAD_KEY_ACCESS_TOKEN);
 		
-		View<Boolean> view = apiGoodsSourceService.create(param);
+		View<Boolean> view = apiGoodsSourceService.create(token,param);
 		
 		return view;
 	}

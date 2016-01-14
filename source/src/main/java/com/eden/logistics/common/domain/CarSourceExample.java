@@ -1,7 +1,6 @@
 package com.eden.logistics.common.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CarSourceExample {
@@ -1215,52 +1214,52 @@ public class CarSourceExample {
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeEqualTo(Date value) {
+        public Criteria andPublishTimeEqualTo(Long value) {
             addCriterion("PUBLISH_TIME =", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeNotEqualTo(Date value) {
+        public Criteria andPublishTimeNotEqualTo(Long value) {
             addCriterion("PUBLISH_TIME <>", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeGreaterThan(Date value) {
+        public Criteria andPublishTimeGreaterThan(Long value) {
             addCriterion("PUBLISH_TIME >", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andPublishTimeGreaterThanOrEqualTo(Long value) {
             addCriterion("PUBLISH_TIME >=", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeLessThan(Date value) {
+        public Criteria andPublishTimeLessThan(Long value) {
             addCriterion("PUBLISH_TIME <", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeLessThanOrEqualTo(Date value) {
+        public Criteria andPublishTimeLessThanOrEqualTo(Long value) {
             addCriterion("PUBLISH_TIME <=", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeIn(List<Date> values) {
+        public Criteria andPublishTimeIn(List<Long> values) {
             addCriterion("PUBLISH_TIME in", values, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeNotIn(List<Date> values) {
+        public Criteria andPublishTimeNotIn(List<Long> values) {
             addCriterion("PUBLISH_TIME not in", values, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeBetween(Date value1, Date value2) {
+        public Criteria andPublishTimeBetween(Long value1, Long value2) {
             addCriterion("PUBLISH_TIME between", value1, value2, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeNotBetween(Date value1, Date value2) {
+        public Criteria andPublishTimeNotBetween(Long value1, Long value2) {
             addCriterion("PUBLISH_TIME not between", value1, value2, "publishTime");
             return (Criteria) this;
         }

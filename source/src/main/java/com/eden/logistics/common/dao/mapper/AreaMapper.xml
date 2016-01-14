@@ -6,7 +6,7 @@
     <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="PARENT_ID" property="parentId" jdbcType="INTEGER" />
     <result column="LEVEL" property="level" jdbcType="INTEGER" />
-    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -106,7 +106,7 @@
     insert into tbl_area (NAME, PARENT_ID, LEVEL, 
       CREATE_TIME)
     values (#{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP})
+      #{createTime,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.eden.logistics.common.domain.Area" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -138,7 +138,7 @@
         #{level,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+        #{createTime,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -164,7 +164,7 @@
         LEVEL = #{record.level,jdbcType=INTEGER},
       </if>
       <if test="record.createTime != null" >
-        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+        CREATE_TIME = #{record.createTime,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -177,7 +177,7 @@
       NAME = #{record.name,jdbcType=VARCHAR},
       PARENT_ID = #{record.parentId,jdbcType=INTEGER},
       LEVEL = #{record.level,jdbcType=INTEGER},
-      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{record.createTime,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -195,7 +195,7 @@
         LEVEL = #{level,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
-        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+        CREATE_TIME = #{createTime,jdbcType=BIGINT},
       </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
@@ -205,7 +205,7 @@
     set NAME = #{name,jdbcType=VARCHAR},
       PARENT_ID = #{parentId,jdbcType=INTEGER},
       LEVEL = #{level,jdbcType=INTEGER},
-      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{createTime,jdbcType=BIGINT}
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <select resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.AreaExample" id="selectByExampleWithRowbounds" >

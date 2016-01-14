@@ -27,7 +27,7 @@
     <result column="CONTACT_USER_EMAIL" property="contactUserEmail" jdbcType="VARCHAR" />
     <result column="CONTACT_USER_QQ" property="contactUserQq" jdbcType="VARCHAR" />
     <result column="CONTACT_USER_WECHAT" property="contactUserWechat" jdbcType="VARCHAR" />
-    <result column="PUBLISH_TIME" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="PUBLISH_TIME" property="publishTime" jdbcType="BIGINT" />
     <result column="PUBLISH_USER_ID" property="publishUserId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -147,7 +147,7 @@
       #{priceOfEveryTon,jdbcType=INTEGER}, #{priceOfEveryVolume,jdbcType=INTEGER}, #{deliveryCompany,jdbcType=VARCHAR}, 
       #{deliveryAddress,jdbcType=VARCHAR}, #{contactUserName,jdbcType=VARCHAR}, #{contactUserMobile,jdbcType=VARCHAR}, 
       #{contactUserPhone,jdbcType=VARCHAR}, #{contactUserEmail,jdbcType=VARCHAR}, #{contactUserQq,jdbcType=VARCHAR}, 
-      #{contactUserWechat,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, #{publishUserId,jdbcType=INTEGER}
+      #{contactUserWechat,jdbcType=VARCHAR}, #{publishTime,jdbcType=BIGINT}, #{publishUserId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.eden.logistics.common.domain.GoodsSource" >
@@ -309,7 +309,7 @@
         #{contactUserWechat,jdbcType=VARCHAR},
       </if>
       <if test="publishTime != null" >
-        #{publishTime,jdbcType=TIMESTAMP},
+        #{publishTime,jdbcType=BIGINT},
       </if>
       <if test="publishUserId != null" >
         #{publishUserId,jdbcType=INTEGER},
@@ -401,7 +401,7 @@
         CONTACT_USER_WECHAT = #{record.contactUserWechat,jdbcType=VARCHAR},
       </if>
       <if test="record.publishTime != null" >
-        PUBLISH_TIME = #{record.publishTime,jdbcType=TIMESTAMP},
+        PUBLISH_TIME = #{record.publishTime,jdbcType=BIGINT},
       </if>
       <if test="record.publishUserId != null" >
         PUBLISH_USER_ID = #{record.publishUserId,jdbcType=INTEGER},
@@ -438,7 +438,7 @@
       CONTACT_USER_EMAIL = #{record.contactUserEmail,jdbcType=VARCHAR},
       CONTACT_USER_QQ = #{record.contactUserQq,jdbcType=VARCHAR},
       CONTACT_USER_WECHAT = #{record.contactUserWechat,jdbcType=VARCHAR},
-      PUBLISH_TIME = #{record.publishTime,jdbcType=TIMESTAMP},
+      PUBLISH_TIME = #{record.publishTime,jdbcType=BIGINT},
       PUBLISH_USER_ID = #{record.publishUserId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -520,7 +520,7 @@
         CONTACT_USER_WECHAT = #{contactUserWechat,jdbcType=VARCHAR},
       </if>
       <if test="publishTime != null" >
-        PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+        PUBLISH_TIME = #{publishTime,jdbcType=BIGINT},
       </if>
       <if test="publishUserId != null" >
         PUBLISH_USER_ID = #{publishUserId,jdbcType=INTEGER},
@@ -554,7 +554,7 @@
       CONTACT_USER_EMAIL = #{contactUserEmail,jdbcType=VARCHAR},
       CONTACT_USER_QQ = #{contactUserQq,jdbcType=VARCHAR},
       CONTACT_USER_WECHAT = #{contactUserWechat,jdbcType=VARCHAR},
-      PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+      PUBLISH_TIME = #{publishTime,jdbcType=BIGINT},
       PUBLISH_USER_ID = #{publishUserId,jdbcType=INTEGER}
     where ID = #{id,jdbcType=INTEGER}
   </update>
