@@ -2,6 +2,7 @@ package com.eden.logistics.api.service;
 
 import java.util.List;
 
+import com.eden.logistics.api.dto.view.CarSourceDetailView;
 import com.eden.logistics.api.dto.view.CarSourceListItemView;
 import com.eden.logistics.common.dto.param.CreateCarSourceParam;
 import com.eden.logistics.common.dto.param.ListCarSourceByCondParam;
@@ -13,5 +14,7 @@ public interface IApiCarSourceService {
 	View<Boolean> create(String token ,CreateCarSourceParam param)throws ServiceException;
 
 	View<List<CarSourceListItemView>> listByCond(ListCarSourceByCondParam param)throws ServiceException;
+
+	View<CarSourceDetailView> loadCarSourceDetail(Integer carSourceId)throws ServiceException;
 
 }

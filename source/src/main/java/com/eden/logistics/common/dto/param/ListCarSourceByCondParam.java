@@ -9,7 +9,6 @@ public class ListCarSourceByCondParam {
 	
 	private Long oldestTime;
 
-	private Integer page;
 	private Integer pageSize;
 	public Integer getDepatureAreaId() {
 		return depatureAreaId;
@@ -41,14 +40,6 @@ public class ListCarSourceByCondParam {
 
 	public void setOldestTime(Long oldestTime) {
 		this.oldestTime = oldestTime;
-	}
-
-	public Integer getPage() {
-		return page;
-	}
-
-	public void setPage(Integer page) {
-		this.page = page;
 	}
 
 	public Integer getPageSize() {

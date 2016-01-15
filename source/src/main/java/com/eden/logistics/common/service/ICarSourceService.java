@@ -13,4 +13,6 @@ public interface ICarSourceService {
 
 	List<CarSourceView> listByCond(ListCarSourceByCondParam param)throws ServiceException;
 
+	CarSourceView getCarSourceViewById(Integer carSourceId)throws ServiceException;
+
 }

@@ -1,7 +1,5 @@
 package com.eden.logistics.common.domain;
 
-import java.util.Date;
-
 public class Collection {
     private Integer id;
 
@@ -9,7 +7,7 @@ public class Collection {
 
     private Integer sourceId;
 
-    private Date collectTime;
+    private Long collectTime;
 
     private Integer ownerUserId;
 
@@ -37,11 +35,11 @@ public class Collection {
         this.sourceId = sourceId;
     }
 
-    public Date getCollectTime() {
+    public Long getCollectTime() {
         return collectTime;
     }
 
-    public void setCollectTime(Date collectTime) {
+    public void setCollectTime(Long collectTime) {
         this.collectTime = collectTime;
     }
 

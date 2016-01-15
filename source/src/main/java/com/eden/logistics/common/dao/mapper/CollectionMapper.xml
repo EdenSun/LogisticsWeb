@@ -5,7 +5,7 @@
     <id column="ID" property="id" jdbcType="INTEGER" />
     <result column="TYPE" property="type" jdbcType="INTEGER" />
     <result column="SOURCE_ID" property="sourceId" jdbcType="INTEGER" />
-    <result column="COLLECT_TIME" property="collectTime" jdbcType="TIMESTAMP" />
+    <result column="COLLECT_TIME" property="collectTime" jdbcType="BIGINT" />
     <result column="OWNER_USER_ID" property="ownerUserId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -105,7 +105,7 @@
     </selectKey>
     insert into tbl_collection (TYPE, SOURCE_ID, COLLECT_TIME, 
       OWNER_USER_ID)
-    values (#{type,jdbcType=INTEGER}, #{sourceId,jdbcType=INTEGER}, #{collectTime,jdbcType=TIMESTAMP}, 
+    values (#{type,jdbcType=INTEGER}, #{sourceId,jdbcType=INTEGER}, #{collectTime,jdbcType=BIGINT}, 
       #{ownerUserId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.eden.logistics.common.domain.Collection" >
@@ -135,7 +135,7 @@
         #{sourceId,jdbcType=INTEGER},
       </if>
       <if test="collectTime != null" >
-        #{collectTime,jdbcType=TIMESTAMP},
+        #{collectTime,jdbcType=BIGINT},
       </if>
       <if test="ownerUserId != null" >
         #{ownerUserId,jdbcType=INTEGER},
@@ -161,7 +161,7 @@
         SOURCE_ID = #{record.sourceId,jdbcType=INTEGER},
       </if>
       <if test="record.collectTime != null" >
-        COLLECT_TIME = #{record.collectTime,jdbcType=TIMESTAMP},
+        COLLECT_TIME = #{record.collectTime,jdbcType=BIGINT},
       </if>
       <if test="record.ownerUserId != null" >
         OWNER_USER_ID = #{record.ownerUserId,jdbcType=INTEGER},
@@ -176,7 +176,7 @@
     set ID = #{record.id,jdbcType=INTEGER},
       TYPE = #{record.type,jdbcType=INTEGER},
       SOURCE_ID = #{record.sourceId,jdbcType=INTEGER},
-      COLLECT_TIME = #{record.collectTime,jdbcType=TIMESTAMP},
+      COLLECT_TIME = #{record.collectTime,jdbcType=BIGINT},
       OWNER_USER_ID = #{record.ownerUserId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -192,7 +192,7 @@
         SOURCE_ID = #{sourceId,jdbcType=INTEGER},
       </if>
       <if test="collectTime != null" >
-        COLLECT_TIME = #{collectTime,jdbcType=TIMESTAMP},
+        COLLECT_TIME = #{collectTime,jdbcType=BIGINT},
       </if>
       <if test="ownerUserId != null" >
         OWNER_USER_ID = #{ownerUserId,jdbcType=INTEGER},
@@ -204,7 +204,7 @@
     update tbl_collection
     set TYPE = #{type,jdbcType=INTEGER},
       SOURCE_ID = #{sourceId,jdbcType=INTEGER},
-      COLLECT_TIME = #{collectTime,jdbcType=TIMESTAMP},
+      COLLECT_TIME = #{collectTime,jdbcType=BIGINT},
       OWNER_USER_ID = #{ownerUserId,jdbcType=INTEGER}
     where ID = #{id,jdbcType=INTEGER}
   </update>

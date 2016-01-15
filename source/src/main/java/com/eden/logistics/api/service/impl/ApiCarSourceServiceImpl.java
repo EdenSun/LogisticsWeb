@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.eden.logistics.api.dto.view.CarSourceDetailView;
 import com.eden.logistics.api.dto.view.CarSourceListItemView;
 import com.eden.logistics.api.service.IApiCarSourceService;
 import com.eden.logistics.common.domain.CarSourceView;
@@ -105,4 +106,60 @@ public class ApiCarSourceServiceImpl implements IApiCarSourceService {
 		return view;
 	}
 
+	@Override
+	public View<CarSourceDetailView> loadCarSourceDetail(Integer carSourceId) throws ServiceException {
+		View<CarSourceDetailView> view = new View<CarSourceDetailView>();
+		
+		try {
+			CarSourceView carSourceView = carSourceService.getCarSourceViewById(carSourceId);
+			CarSourceDetailView carSourceDetailView = trans2CarSourceDetailView(carSourceView);
+			
+			view.setData(carSourceDetailView);
+			return view;
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			view.setMsg(e.getMessage());
+			view.setSuccess(false);
+			return view;
+		}
+	}
+
+	private CarSourceDetailView trans2CarSourceDetailView(CarSourceView carSourceView) {
+		if( carSourceView == null ){
+			return null;
+		}
+		CarSourceDetailView view = new CarSourceDetailView();
+		view.setCarHeight(carSourceView.getCarHeight());
+		view.setCarLength(carSourceView.getCarLength());
+		view.setCarNumber(carSourceView.getCarNumber());
+		view.setCarSourceDescription(carSourceView.getCarSourceDescription());
+		view.setCarTonnage(carSourceView.getCarTonnage());
+		view.setCarType(carSourceView.getCarType());
+		view.setCarTypeId(carSourceView.getCarTypeId());
+		view.setCarVolume(carSourceView.getCarVolume());
+		view.setCarWidth(carSourceView.getCarWidth());
+		view.setContactUserEmail(carSourceView.getContactUserEmail());
+		view.setContactUserMobile(carSourceView.getContactUserMobile());
+		view.setContactUserName(carSourceView.getContactUserName());
+		view.setContactUserPhone(carSourceView.getContactUserPhone());
+		view.setContactUserQq(carSourceView.getContactUserQq());
+		view.setContactUserWechat(carSourceView.getContactUserWechat());
+		view.setDepatureAreaId(carSourceView.getDepatureAreaId());
+		view.setDepatureAreaName(carSourceView.getDepatureAreaName());
+		view.setDestinationAreaId(carSourceView.getDestinationAreaId());
+		view.setDestinationAreaName(carSourceView.getDestinationAreaName());
+		view.setId(carSourceView.getId());
+		view.setPublishTime(carSourceView.getPublishTime());
+		view.setPublishTimeInt(carSourceView.getPublishTimeInt());
+		view.setPublishUserId(carSourceView.getPublishUserId());
+		view.setPublishUserNickname(carSourceView.getPublishUserNickname());
+
+		//TODO: Í¼Æ¬ºÍÆÀÂÛ
+		//view.setImgList(imgList);
+		//view.setCommentList(carSourceView.get);
+		
+		return view;
+	}
+
+	
 }

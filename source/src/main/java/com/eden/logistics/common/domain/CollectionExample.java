@@ -1,7 +1,6 @@
 package com.eden.logistics.common.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CollectionExample {
@@ -295,52 +294,52 @@ public class CollectionExample {
             return (Criteria) this;
         }
 
-        public Criteria andCollectTimeEqualTo(Date value) {
+        public Criteria andCollectTimeEqualTo(Long value) {
             addCriterion("COLLECT_TIME =", value, "collectTime");
             return (Criteria) this;
         }
 
-        public Criteria andCollectTimeNotEqualTo(Date value) {
+        public Criteria andCollectTimeNotEqualTo(Long value) {
             addCriterion("COLLECT_TIME <>", value, "collectTime");
             return (Criteria) this;
         }
 
-        public Criteria andCollectTimeGreaterThan(Date value) {
+        public Criteria andCollectTimeGreaterThan(Long value) {
             addCriterion("COLLECT_TIME >", value, "collectTime");
             return (Criteria) this;
         }
 
-        public Criteria andCollectTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andCollectTimeGreaterThanOrEqualTo(Long value) {
             addCriterion("COLLECT_TIME >=", value, "collectTime");
             return (Criteria) this;
         }
 
-        public Criteria andCollectTimeLessThan(Date value) {
+        public Criteria andCollectTimeLessThan(Long value) {
             addCriterion("COLLECT_TIME <", value, "collectTime");
             return (Criteria) this;
         }
 
-        public Criteria andCollectTimeLessThanOrEqualTo(Date value) {
+        public Criteria andCollectTimeLessThanOrEqualTo(Long value) {
             addCriterion("COLLECT_TIME <=", value, "collectTime");
             return (Criteria) this;
         }
 
-        public Criteria andCollectTimeIn(List<Date> values) {
+        public Criteria andCollectTimeIn(List<Long> values) {
             addCriterion("COLLECT_TIME in", values, "collectTime");
             return (Criteria) this;
         }
 
-        public Criteria andCollectTimeNotIn(List<Date> values) {
+        public Criteria andCollectTimeNotIn(List<Long> values) {
             addCriterion("COLLECT_TIME not in", values, "collectTime");
             return (Criteria) this;
         }
 
-        public Criteria andCollectTimeBetween(Date value1, Date value2) {
+        public Criteria andCollectTimeBetween(Long value1, Long value2) {
             addCriterion("COLLECT_TIME between", value1, value2, "collectTime");
             return (Criteria) this;
         }
 
-        public Criteria andCollectTimeNotBetween(Date value1, Date value2) {
+        public Criteria andCollectTimeNotBetween(Long value1, Long value2) {
             addCriterion("COLLECT_TIME not between", value1, value2, "collectTime");
             return (Criteria) this;
         }

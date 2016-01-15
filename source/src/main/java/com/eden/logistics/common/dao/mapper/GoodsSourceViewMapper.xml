@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.eden.logistics.common.dao.GoodsSourceMapper" >
-  <resultMap id="BaseResultMap" type="com.eden.logistics.common.domain.GoodsSource" >
-    <id column="ID" property="id" jdbcType="INTEGER" />
+<mapper namespace="com.eden.logistics.common.dao.GoodsSourceViewMapper" >
+  <resultMap id="BaseResultMap" type="com.eden.logistics.common.domain.GoodsSourceView" >
+    <result column="ID" property="id" jdbcType="INTEGER" />
     <result column="DEPATURE_AREA_ID" property="depatureAreaId" jdbcType="INTEGER" />
+    <result column="DEPATURE_AREA_NAME" property="depatureAreaName" jdbcType="VARCHAR" />
     <result column="DESTINATION_AREA_ID" property="destinationAreaId" jdbcType="INTEGER" />
-    <result column="DEPATURE_TIME" property="depatureTime" jdbcType="BIGINT" />
-    <result column="ARRIVAL_TIME" property="arrivalTime" jdbcType="BIGINT" />
-    <result column="TRANSPORT_TYPE" property="transportType" jdbcType="INTEGER" />
-    <result column="GOODS_TYPE" property="goodsType" jdbcType="INTEGER" />
-    <result column="CAR_TYPE" property="carType" jdbcType="INTEGER" />
+    <result column="DESTINATION_AREA_NAME" property="destinationAreaName" jdbcType="VARCHAR" />
+    <result column="DEPATURE_TIME" property="depatureTime" jdbcType="VARCHAR" />
+    <result column="DEPATURE_TIME_INT" property="depatureTimeInt" jdbcType="BIGINT" />
+    <result column="ARRIVAL_TIME" property="arrivalTime" jdbcType="VARCHAR" />
+    <result column="ARRIVAL_TIME_INT" property="arrivalTimeInt" jdbcType="BIGINT" />
+    <result column="TRANSPORT_TYPE_ID" property="transportTypeId" jdbcType="INTEGER" />
+    <result column="TRANSPORT_TYPE" property="transportType" jdbcType="VARCHAR" />
+    <result column="GOODS_TYPE_ID" property="goodsTypeId" jdbcType="INTEGER" />
+    <result column="GOODS_TYPE" property="goodsType" jdbcType="VARCHAR" />
+    <result column="CAR_TYPE_ID" property="carTypeId" jdbcType="INTEGER" />
+    <result column="CAR_TYPE" property="carType" jdbcType="VARCHAR" />
     <result column="NEED_CAR_NUMBER" property="needCarNumber" jdbcType="INTEGER" />
     <result column="GOODS_DESCRIPTION" property="goodsDescription" jdbcType="VARCHAR" />
     <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR" />
-    <result column="GOODS_WEIGHT" property="goodsWeight" jdbcType="INTEGER" />
-    <result column="GOODS_VOLUME" property="goodsVolume" jdbcType="INTEGER" />
-    <result column="LINGDAN_PRICE" property="lingdanPrice" jdbcType="INTEGER" />
-    <result column="ZHENGCHE_PRICE" property="zhengchePrice" jdbcType="INTEGER" />
-    <result column="PRICE_OF_EVERY_TON" property="priceOfEveryTon" jdbcType="INTEGER" />
-    <result column="PRICE_OF_EVERY_VOLUME" property="priceOfEveryVolume" jdbcType="INTEGER" />
+    <result column="GOODS_WEIGHT" property="goodsWeight" jdbcType="VARCHAR" />
+    <result column="GOODS_VOLUME" property="goodsVolume" jdbcType="VARCHAR" />
+    <result column="LINGDAN_PRICE" property="lingdanPrice" jdbcType="VARCHAR" />
+    <result column="ZHENGCHE_PRICE" property="zhengchePrice" jdbcType="VARCHAR" />
+    <result column="PRICE_OF_EVERY_TON" property="priceOfEveryTon" jdbcType="VARCHAR" />
+    <result column="PRICE_OF_EVERY_VOLUME" property="priceOfEveryVolume" jdbcType="VARCHAR" />
     <result column="DELIVERY_COMPANY" property="deliveryCompany" jdbcType="VARCHAR" />
     <result column="DELIVERY_ADDRESS" property="deliveryAddress" jdbcType="VARCHAR" />
     <result column="CONTACT_USER_NAME" property="contactUserName" jdbcType="VARCHAR" />
@@ -27,8 +34,10 @@
     <result column="CONTACT_USER_EMAIL" property="contactUserEmail" jdbcType="VARCHAR" />
     <result column="CONTACT_USER_QQ" property="contactUserQq" jdbcType="VARCHAR" />
     <result column="CONTACT_USER_WECHAT" property="contactUserWechat" jdbcType="VARCHAR" />
-    <result column="PUBLISH_TIME" property="publishTime" jdbcType="BIGINT" />
+    <result column="PUBLISH_TIME" property="publishTime" jdbcType="VARCHAR" />
+    <result column="PUBLISH_TIME_INT" property="publishTimeInt" jdbcType="BIGINT" />
     <result column="PUBLISH_USER_ID" property="publishUserId" jdbcType="INTEGER" />
+    <result column="PUBLISH_USER_NICKNAME" property="publishUserNickname" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -89,19 +98,21 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, DEPATURE_AREA_ID, DESTINATION_AREA_ID, DEPATURE_TIME, ARRIVAL_TIME, TRANSPORT_TYPE, 
-    GOODS_TYPE, CAR_TYPE, NEED_CAR_NUMBER, GOODS_DESCRIPTION, GOODS_NAME, GOODS_WEIGHT, 
-    GOODS_VOLUME, LINGDAN_PRICE, ZHENGCHE_PRICE, PRICE_OF_EVERY_TON, PRICE_OF_EVERY_VOLUME, 
-    DELIVERY_COMPANY, DELIVERY_ADDRESS, CONTACT_USER_NAME, CONTACT_USER_MOBILE, CONTACT_USER_PHONE, 
-    CONTACT_USER_EMAIL, CONTACT_USER_QQ, CONTACT_USER_WECHAT, PUBLISH_TIME, PUBLISH_USER_ID
+    ID, DEPATURE_AREA_ID, DEPATURE_AREA_NAME, DESTINATION_AREA_ID, DESTINATION_AREA_NAME, 
+    DEPATURE_TIME, DEPATURE_TIME_INT, ARRIVAL_TIME, ARRIVAL_TIME_INT, TRANSPORT_TYPE_ID, 
+    TRANSPORT_TYPE, GOODS_TYPE_ID, GOODS_TYPE, CAR_TYPE_ID, CAR_TYPE, NEED_CAR_NUMBER, 
+    GOODS_DESCRIPTION, GOODS_NAME, GOODS_WEIGHT, GOODS_VOLUME, LINGDAN_PRICE, ZHENGCHE_PRICE, 
+    PRICE_OF_EVERY_TON, PRICE_OF_EVERY_VOLUME, DELIVERY_COMPANY, DELIVERY_ADDRESS, CONTACT_USER_NAME, 
+    CONTACT_USER_MOBILE, CONTACT_USER_PHONE, CONTACT_USER_EMAIL, CONTACT_USER_QQ, CONTACT_USER_WECHAT, 
+    PUBLISH_TIME, PUBLISH_TIME_INT, PUBLISH_USER_ID, PUBLISH_USER_NICKNAME
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.GoodsSourceExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.GoodsSourceViewExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tbl_goods_source
+    from vw_goods_source
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -109,70 +120,84 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from tbl_goods_source
-    where ID = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from tbl_goods_source
-    where ID = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.eden.logistics.common.domain.GoodsSourceExample" >
-    delete from tbl_goods_source
+  <delete id="deleteByExample" parameterType="com.eden.logistics.common.domain.GoodsSourceViewExample" >
+    delete from vw_goods_source
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.eden.logistics.common.domain.GoodsSource" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into tbl_goods_source (DEPATURE_AREA_ID, DESTINATION_AREA_ID, 
-      DEPATURE_TIME, ARRIVAL_TIME, TRANSPORT_TYPE, 
-      GOODS_TYPE, CAR_TYPE, NEED_CAR_NUMBER, 
-      GOODS_DESCRIPTION, GOODS_NAME, GOODS_WEIGHT, 
-      GOODS_VOLUME, LINGDAN_PRICE, ZHENGCHE_PRICE, 
-      PRICE_OF_EVERY_TON, PRICE_OF_EVERY_VOLUME, DELIVERY_COMPANY, 
-      DELIVERY_ADDRESS, CONTACT_USER_NAME, CONTACT_USER_MOBILE, 
-      CONTACT_USER_PHONE, CONTACT_USER_EMAIL, CONTACT_USER_QQ, 
-      CONTACT_USER_WECHAT, PUBLISH_TIME, PUBLISH_USER_ID
-      )
-    values (#{depatureAreaId,jdbcType=INTEGER}, #{destinationAreaId,jdbcType=INTEGER}, 
-      #{depatureTime,jdbcType=BIGINT}, #{arrivalTime,jdbcType=BIGINT}, #{transportType,jdbcType=INTEGER}, 
-      #{goodsType,jdbcType=INTEGER}, #{carType,jdbcType=INTEGER}, #{needCarNumber,jdbcType=INTEGER}, 
-      #{goodsDescription,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{goodsWeight,jdbcType=INTEGER}, 
-      #{goodsVolume,jdbcType=INTEGER}, #{lingdanPrice,jdbcType=INTEGER}, #{zhengchePrice,jdbcType=INTEGER}, 
-      #{priceOfEveryTon,jdbcType=INTEGER}, #{priceOfEveryVolume,jdbcType=INTEGER}, #{deliveryCompany,jdbcType=VARCHAR}, 
-      #{deliveryAddress,jdbcType=VARCHAR}, #{contactUserName,jdbcType=VARCHAR}, #{contactUserMobile,jdbcType=VARCHAR}, 
-      #{contactUserPhone,jdbcType=VARCHAR}, #{contactUserEmail,jdbcType=VARCHAR}, #{contactUserQq,jdbcType=VARCHAR}, 
-      #{contactUserWechat,jdbcType=VARCHAR}, #{publishTime,jdbcType=BIGINT}, #{publishUserId,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.eden.logistics.common.domain.GoodsSourceView" >
+    insert into vw_goods_source (ID, DEPATURE_AREA_ID, DEPATURE_AREA_NAME, 
+      DESTINATION_AREA_ID, DESTINATION_AREA_NAME, 
+      DEPATURE_TIME, DEPATURE_TIME_INT, ARRIVAL_TIME, 
+      ARRIVAL_TIME_INT, TRANSPORT_TYPE_ID, TRANSPORT_TYPE, 
+      GOODS_TYPE_ID, GOODS_TYPE, CAR_TYPE_ID, 
+      CAR_TYPE, NEED_CAR_NUMBER, GOODS_DESCRIPTION, 
+      GOODS_NAME, GOODS_WEIGHT, GOODS_VOLUME, 
+      LINGDAN_PRICE, ZHENGCHE_PRICE, PRICE_OF_EVERY_TON, 
+      PRICE_OF_EVERY_VOLUME, DELIVERY_COMPANY, DELIVERY_ADDRESS, 
+      CONTACT_USER_NAME, CONTACT_USER_MOBILE, CONTACT_USER_PHONE, 
+      CONTACT_USER_EMAIL, CONTACT_USER_QQ, CONTACT_USER_WECHAT, 
+      PUBLISH_TIME, PUBLISH_TIME_INT, PUBLISH_USER_ID, 
+      PUBLISH_USER_NICKNAME)
+    values (#{id,jdbcType=INTEGER}, #{depatureAreaId,jdbcType=INTEGER}, #{depatureAreaName,jdbcType=VARCHAR}, 
+      #{destinationAreaId,jdbcType=INTEGER}, #{destinationAreaName,jdbcType=VARCHAR}, 
+      #{depatureTime,jdbcType=VARCHAR}, #{depatureTimeInt,jdbcType=BIGINT}, #{arrivalTime,jdbcType=VARCHAR}, 
+      #{arrivalTimeInt,jdbcType=BIGINT}, #{transportTypeId,jdbcType=INTEGER}, #{transportType,jdbcType=VARCHAR}, 
+      #{goodsTypeId,jdbcType=INTEGER}, #{goodsType,jdbcType=VARCHAR}, #{carTypeId,jdbcType=INTEGER}, 
+      #{carType,jdbcType=VARCHAR}, #{needCarNumber,jdbcType=INTEGER}, #{goodsDescription,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsWeight,jdbcType=VARCHAR}, #{goodsVolume,jdbcType=VARCHAR}, 
+      #{lingdanPrice,jdbcType=VARCHAR}, #{zhengchePrice,jdbcType=VARCHAR}, #{priceOfEveryTon,jdbcType=VARCHAR}, 
+      #{priceOfEveryVolume,jdbcType=VARCHAR}, #{deliveryCompany,jdbcType=VARCHAR}, #{deliveryAddress,jdbcType=VARCHAR}, 
+      #{contactUserName,jdbcType=VARCHAR}, #{contactUserMobile,jdbcType=VARCHAR}, #{contactUserPhone,jdbcType=VARCHAR}, 
+      #{contactUserEmail,jdbcType=VARCHAR}, #{contactUserQq,jdbcType=VARCHAR}, #{contactUserWechat,jdbcType=VARCHAR}, 
+      #{publishTime,jdbcType=VARCHAR}, #{publishTimeInt,jdbcType=BIGINT}, #{publishUserId,jdbcType=INTEGER}, 
+      #{publishUserNickname,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.eden.logistics.common.domain.GoodsSource" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into tbl_goods_source
+  <insert id="insertSelective" parameterType="com.eden.logistics.common.domain.GoodsSourceView" >
+    insert into vw_goods_source
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
       <if test="depatureAreaId != null" >
         DEPATURE_AREA_ID,
+      </if>
+      <if test="depatureAreaName != null" >
+        DEPATURE_AREA_NAME,
       </if>
       <if test="destinationAreaId != null" >
         DESTINATION_AREA_ID,
       </if>
+      <if test="destinationAreaName != null" >
+        DESTINATION_AREA_NAME,
+      </if>
       <if test="depatureTime != null" >
         DEPATURE_TIME,
+      </if>
+      <if test="depatureTimeInt != null" >
+        DEPATURE_TIME_INT,
       </if>
       <if test="arrivalTime != null" >
         ARRIVAL_TIME,
       </if>
+      <if test="arrivalTimeInt != null" >
+        ARRIVAL_TIME_INT,
+      </if>
+      <if test="transportTypeId != null" >
+        TRANSPORT_TYPE_ID,
+      </if>
       <if test="transportType != null" >
         TRANSPORT_TYPE,
       </if>
+      <if test="goodsTypeId != null" >
+        GOODS_TYPE_ID,
+      </if>
       <if test="goodsType != null" >
         GOODS_TYPE,
+      </if>
+      <if test="carTypeId != null" >
+        CAR_TYPE_ID,
       </if>
       <if test="carType != null" >
         CAR_TYPE,
@@ -231,31 +256,61 @@
       <if test="publishTime != null" >
         PUBLISH_TIME,
       </if>
+      <if test="publishTimeInt != null" >
+        PUBLISH_TIME_INT,
+      </if>
       <if test="publishUserId != null" >
         PUBLISH_USER_ID,
       </if>
+      <if test="publishUserNickname != null" >
+        PUBLISH_USER_NICKNAME,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="depatureAreaId != null" >
         #{depatureAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="depatureAreaName != null" >
+        #{depatureAreaName,jdbcType=VARCHAR},
       </if>
       <if test="destinationAreaId != null" >
         #{destinationAreaId,jdbcType=INTEGER},
       </if>
+      <if test="destinationAreaName != null" >
+        #{destinationAreaName,jdbcType=VARCHAR},
+      </if>
       <if test="depatureTime != null" >
-        #{depatureTime,jdbcType=BIGINT},
+        #{depatureTime,jdbcType=VARCHAR},
+      </if>
+      <if test="depatureTimeInt != null" >
+        #{depatureTimeInt,jdbcType=BIGINT},
       </if>
       <if test="arrivalTime != null" >
-        #{arrivalTime,jdbcType=BIGINT},
+        #{arrivalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalTimeInt != null" >
+        #{arrivalTimeInt,jdbcType=BIGINT},
+      </if>
+      <if test="transportTypeId != null" >
+        #{transportTypeId,jdbcType=INTEGER},
       </if>
       <if test="transportType != null" >
-        #{transportType,jdbcType=INTEGER},
+        #{transportType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTypeId != null" >
+        #{goodsTypeId,jdbcType=INTEGER},
       </if>
       <if test="goodsType != null" >
-        #{goodsType,jdbcType=INTEGER},
+        #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="carTypeId != null" >
+        #{carTypeId,jdbcType=INTEGER},
       </if>
       <if test="carType != null" >
-        #{carType,jdbcType=INTEGER},
+        #{carType,jdbcType=VARCHAR},
       </if>
       <if test="needCarNumber != null" >
         #{needCarNumber,jdbcType=INTEGER},
@@ -267,22 +322,22 @@
         #{goodsName,jdbcType=VARCHAR},
       </if>
       <if test="goodsWeight != null" >
-        #{goodsWeight,jdbcType=INTEGER},
+        #{goodsWeight,jdbcType=VARCHAR},
       </if>
       <if test="goodsVolume != null" >
-        #{goodsVolume,jdbcType=INTEGER},
+        #{goodsVolume,jdbcType=VARCHAR},
       </if>
       <if test="lingdanPrice != null" >
-        #{lingdanPrice,jdbcType=INTEGER},
+        #{lingdanPrice,jdbcType=VARCHAR},
       </if>
       <if test="zhengchePrice != null" >
-        #{zhengchePrice,jdbcType=INTEGER},
+        #{zhengchePrice,jdbcType=VARCHAR},
       </if>
       <if test="priceOfEveryTon != null" >
-        #{priceOfEveryTon,jdbcType=INTEGER},
+        #{priceOfEveryTon,jdbcType=VARCHAR},
       </if>
       <if test="priceOfEveryVolume != null" >
-        #{priceOfEveryVolume,jdbcType=INTEGER},
+        #{priceOfEveryVolume,jdbcType=VARCHAR},
       </if>
       <if test="deliveryCompany != null" >
         #{deliveryCompany,jdbcType=VARCHAR},
@@ -309,21 +364,27 @@
         #{contactUserWechat,jdbcType=VARCHAR},
       </if>
       <if test="publishTime != null" >
-        #{publishTime,jdbcType=BIGINT},
+        #{publishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTimeInt != null" >
+        #{publishTimeInt,jdbcType=BIGINT},
       </if>
       <if test="publishUserId != null" >
         #{publishUserId,jdbcType=INTEGER},
       </if>
+      <if test="publishUserNickname != null" >
+        #{publishUserNickname,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.eden.logistics.common.domain.GoodsSourceExample" resultType="java.lang.Integer" >
-    select count(*) from tbl_goods_source
+  <select id="countByExample" parameterType="com.eden.logistics.common.domain.GoodsSourceViewExample" resultType="java.lang.Integer" >
+    select count(*) from vw_goods_source
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tbl_goods_source
+    update vw_goods_source
     <set >
       <if test="record.id != null" >
         ID = #{record.id,jdbcType=INTEGER},
@@ -331,23 +392,44 @@
       <if test="record.depatureAreaId != null" >
         DEPATURE_AREA_ID = #{record.depatureAreaId,jdbcType=INTEGER},
       </if>
+      <if test="record.depatureAreaName != null" >
+        DEPATURE_AREA_NAME = #{record.depatureAreaName,jdbcType=VARCHAR},
+      </if>
       <if test="record.destinationAreaId != null" >
         DESTINATION_AREA_ID = #{record.destinationAreaId,jdbcType=INTEGER},
       </if>
+      <if test="record.destinationAreaName != null" >
+        DESTINATION_AREA_NAME = #{record.destinationAreaName,jdbcType=VARCHAR},
+      </if>
       <if test="record.depatureTime != null" >
-        DEPATURE_TIME = #{record.depatureTime,jdbcType=BIGINT},
+        DEPATURE_TIME = #{record.depatureTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depatureTimeInt != null" >
+        DEPATURE_TIME_INT = #{record.depatureTimeInt,jdbcType=BIGINT},
       </if>
       <if test="record.arrivalTime != null" >
-        ARRIVAL_TIME = #{record.arrivalTime,jdbcType=BIGINT},
+        ARRIVAL_TIME = #{record.arrivalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrivalTimeInt != null" >
+        ARRIVAL_TIME_INT = #{record.arrivalTimeInt,jdbcType=BIGINT},
+      </if>
+      <if test="record.transportTypeId != null" >
+        TRANSPORT_TYPE_ID = #{record.transportTypeId,jdbcType=INTEGER},
       </if>
       <if test="record.transportType != null" >
-        TRANSPORT_TYPE = #{record.transportType,jdbcType=INTEGER},
+        TRANSPORT_TYPE = #{record.transportType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsTypeId != null" >
+        GOODS_TYPE_ID = #{record.goodsTypeId,jdbcType=INTEGER},
       </if>
       <if test="record.goodsType != null" >
-        GOODS_TYPE = #{record.goodsType,jdbcType=INTEGER},
+        GOODS_TYPE = #{record.goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carTypeId != null" >
+        CAR_TYPE_ID = #{record.carTypeId,jdbcType=INTEGER},
       </if>
       <if test="record.carType != null" >
-        CAR_TYPE = #{record.carType,jdbcType=INTEGER},
+        CAR_TYPE = #{record.carType,jdbcType=VARCHAR},
       </if>
       <if test="record.needCarNumber != null" >
         NEED_CAR_NUMBER = #{record.needCarNumber,jdbcType=INTEGER},
@@ -359,22 +441,22 @@
         GOODS_NAME = #{record.goodsName,jdbcType=VARCHAR},
       </if>
       <if test="record.goodsWeight != null" >
-        GOODS_WEIGHT = #{record.goodsWeight,jdbcType=INTEGER},
+        GOODS_WEIGHT = #{record.goodsWeight,jdbcType=VARCHAR},
       </if>
       <if test="record.goodsVolume != null" >
-        GOODS_VOLUME = #{record.goodsVolume,jdbcType=INTEGER},
+        GOODS_VOLUME = #{record.goodsVolume,jdbcType=VARCHAR},
       </if>
       <if test="record.lingdanPrice != null" >
-        LINGDAN_PRICE = #{record.lingdanPrice,jdbcType=INTEGER},
+        LINGDAN_PRICE = #{record.lingdanPrice,jdbcType=VARCHAR},
       </if>
       <if test="record.zhengchePrice != null" >
-        ZHENGCHE_PRICE = #{record.zhengchePrice,jdbcType=INTEGER},
+        ZHENGCHE_PRICE = #{record.zhengchePrice,jdbcType=VARCHAR},
       </if>
       <if test="record.priceOfEveryTon != null" >
-        PRICE_OF_EVERY_TON = #{record.priceOfEveryTon,jdbcType=INTEGER},
+        PRICE_OF_EVERY_TON = #{record.priceOfEveryTon,jdbcType=VARCHAR},
       </if>
       <if test="record.priceOfEveryVolume != null" >
-        PRICE_OF_EVERY_VOLUME = #{record.priceOfEveryVolume,jdbcType=INTEGER},
+        PRICE_OF_EVERY_VOLUME = #{record.priceOfEveryVolume,jdbcType=VARCHAR},
       </if>
       <if test="record.deliveryCompany != null" >
         DELIVERY_COMPANY = #{record.deliveryCompany,jdbcType=VARCHAR},
@@ -401,10 +483,16 @@
         CONTACT_USER_WECHAT = #{record.contactUserWechat,jdbcType=VARCHAR},
       </if>
       <if test="record.publishTime != null" >
-        PUBLISH_TIME = #{record.publishTime,jdbcType=BIGINT},
+        PUBLISH_TIME = #{record.publishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishTimeInt != null" >
+        PUBLISH_TIME_INT = #{record.publishTimeInt,jdbcType=BIGINT},
       </if>
       <if test="record.publishUserId != null" >
         PUBLISH_USER_ID = #{record.publishUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishUserNickname != null" >
+        PUBLISH_USER_NICKNAME = #{record.publishUserNickname,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -412,24 +500,31 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tbl_goods_source
+    update vw_goods_source
     set ID = #{record.id,jdbcType=INTEGER},
       DEPATURE_AREA_ID = #{record.depatureAreaId,jdbcType=INTEGER},
+      DEPATURE_AREA_NAME = #{record.depatureAreaName,jdbcType=VARCHAR},
       DESTINATION_AREA_ID = #{record.destinationAreaId,jdbcType=INTEGER},
-      DEPATURE_TIME = #{record.depatureTime,jdbcType=BIGINT},
-      ARRIVAL_TIME = #{record.arrivalTime,jdbcType=BIGINT},
-      TRANSPORT_TYPE = #{record.transportType,jdbcType=INTEGER},
-      GOODS_TYPE = #{record.goodsType,jdbcType=INTEGER},
-      CAR_TYPE = #{record.carType,jdbcType=INTEGER},
+      DESTINATION_AREA_NAME = #{record.destinationAreaName,jdbcType=VARCHAR},
+      DEPATURE_TIME = #{record.depatureTime,jdbcType=VARCHAR},
+      DEPATURE_TIME_INT = #{record.depatureTimeInt,jdbcType=BIGINT},
+      ARRIVAL_TIME = #{record.arrivalTime,jdbcType=VARCHAR},
+      ARRIVAL_TIME_INT = #{record.arrivalTimeInt,jdbcType=BIGINT},
+      TRANSPORT_TYPE_ID = #{record.transportTypeId,jdbcType=INTEGER},
+      TRANSPORT_TYPE = #{record.transportType,jdbcType=VARCHAR},
+      GOODS_TYPE_ID = #{record.goodsTypeId,jdbcType=INTEGER},
+      GOODS_TYPE = #{record.goodsType,jdbcType=VARCHAR},
+      CAR_TYPE_ID = #{record.carTypeId,jdbcType=INTEGER},
+      CAR_TYPE = #{record.carType,jdbcType=VARCHAR},
       NEED_CAR_NUMBER = #{record.needCarNumber,jdbcType=INTEGER},
       GOODS_DESCRIPTION = #{record.goodsDescription,jdbcType=VARCHAR},
       GOODS_NAME = #{record.goodsName,jdbcType=VARCHAR},
-      GOODS_WEIGHT = #{record.goodsWeight,jdbcType=INTEGER},
-      GOODS_VOLUME = #{record.goodsVolume,jdbcType=INTEGER},
-      LINGDAN_PRICE = #{record.lingdanPrice,jdbcType=INTEGER},
-      ZHENGCHE_PRICE = #{record.zhengchePrice,jdbcType=INTEGER},
-      PRICE_OF_EVERY_TON = #{record.priceOfEveryTon,jdbcType=INTEGER},
-      PRICE_OF_EVERY_VOLUME = #{record.priceOfEveryVolume,jdbcType=INTEGER},
+      GOODS_WEIGHT = #{record.goodsWeight,jdbcType=VARCHAR},
+      GOODS_VOLUME = #{record.goodsVolume,jdbcType=VARCHAR},
+      LINGDAN_PRICE = #{record.lingdanPrice,jdbcType=VARCHAR},
+      ZHENGCHE_PRICE = #{record.zhengchePrice,jdbcType=VARCHAR},
+      PRICE_OF_EVERY_TON = #{record.priceOfEveryTon,jdbcType=VARCHAR},
+      PRICE_OF_EVERY_VOLUME = #{record.priceOfEveryVolume,jdbcType=VARCHAR},
       DELIVERY_COMPANY = #{record.deliveryCompany,jdbcType=VARCHAR},
       DELIVERY_ADDRESS = #{record.deliveryAddress,jdbcType=VARCHAR},
       CONTACT_USER_NAME = #{record.contactUserName,jdbcType=VARCHAR},
@@ -438,133 +533,21 @@
       CONTACT_USER_EMAIL = #{record.contactUserEmail,jdbcType=VARCHAR},
       CONTACT_USER_QQ = #{record.contactUserQq,jdbcType=VARCHAR},
       CONTACT_USER_WECHAT = #{record.contactUserWechat,jdbcType=VARCHAR},
-      PUBLISH_TIME = #{record.publishTime,jdbcType=BIGINT},
-      PUBLISH_USER_ID = #{record.publishUserId,jdbcType=INTEGER}
+      PUBLISH_TIME = #{record.publishTime,jdbcType=VARCHAR},
+      PUBLISH_TIME_INT = #{record.publishTimeInt,jdbcType=BIGINT},
+      PUBLISH_USER_ID = #{record.publishUserId,jdbcType=INTEGER},
+      PUBLISH_USER_NICKNAME = #{record.publishUserNickname,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.eden.logistics.common.domain.GoodsSource" >
-    update tbl_goods_source
-    <set >
-      <if test="depatureAreaId != null" >
-        DEPATURE_AREA_ID = #{depatureAreaId,jdbcType=INTEGER},
-      </if>
-      <if test="destinationAreaId != null" >
-        DESTINATION_AREA_ID = #{destinationAreaId,jdbcType=INTEGER},
-      </if>
-      <if test="depatureTime != null" >
-        DEPATURE_TIME = #{depatureTime,jdbcType=BIGINT},
-      </if>
-      <if test="arrivalTime != null" >
-        ARRIVAL_TIME = #{arrivalTime,jdbcType=BIGINT},
-      </if>
-      <if test="transportType != null" >
-        TRANSPORT_TYPE = #{transportType,jdbcType=INTEGER},
-      </if>
-      <if test="goodsType != null" >
-        GOODS_TYPE = #{goodsType,jdbcType=INTEGER},
-      </if>
-      <if test="carType != null" >
-        CAR_TYPE = #{carType,jdbcType=INTEGER},
-      </if>
-      <if test="needCarNumber != null" >
-        NEED_CAR_NUMBER = #{needCarNumber,jdbcType=INTEGER},
-      </if>
-      <if test="goodsDescription != null" >
-        GOODS_DESCRIPTION = #{goodsDescription,jdbcType=VARCHAR},
-      </if>
-      <if test="goodsName != null" >
-        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
-      </if>
-      <if test="goodsWeight != null" >
-        GOODS_WEIGHT = #{goodsWeight,jdbcType=INTEGER},
-      </if>
-      <if test="goodsVolume != null" >
-        GOODS_VOLUME = #{goodsVolume,jdbcType=INTEGER},
-      </if>
-      <if test="lingdanPrice != null" >
-        LINGDAN_PRICE = #{lingdanPrice,jdbcType=INTEGER},
-      </if>
-      <if test="zhengchePrice != null" >
-        ZHENGCHE_PRICE = #{zhengchePrice,jdbcType=INTEGER},
-      </if>
-      <if test="priceOfEveryTon != null" >
-        PRICE_OF_EVERY_TON = #{priceOfEveryTon,jdbcType=INTEGER},
-      </if>
-      <if test="priceOfEveryVolume != null" >
-        PRICE_OF_EVERY_VOLUME = #{priceOfEveryVolume,jdbcType=INTEGER},
-      </if>
-      <if test="deliveryCompany != null" >
-        DELIVERY_COMPANY = #{deliveryCompany,jdbcType=VARCHAR},
-      </if>
-      <if test="deliveryAddress != null" >
-        DELIVERY_ADDRESS = #{deliveryAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="contactUserName != null" >
-        CONTACT_USER_NAME = #{contactUserName,jdbcType=VARCHAR},
-      </if>
-      <if test="contactUserMobile != null" >
-        CONTACT_USER_MOBILE = #{contactUserMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="contactUserPhone != null" >
-        CONTACT_USER_PHONE = #{contactUserPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="contactUserEmail != null" >
-        CONTACT_USER_EMAIL = #{contactUserEmail,jdbcType=VARCHAR},
-      </if>
-      <if test="contactUserQq != null" >
-        CONTACT_USER_QQ = #{contactUserQq,jdbcType=VARCHAR},
-      </if>
-      <if test="contactUserWechat != null" >
-        CONTACT_USER_WECHAT = #{contactUserWechat,jdbcType=VARCHAR},
-      </if>
-      <if test="publishTime != null" >
-        PUBLISH_TIME = #{publishTime,jdbcType=BIGINT},
-      </if>
-      <if test="publishUserId != null" >
-        PUBLISH_USER_ID = #{publishUserId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.eden.logistics.common.domain.GoodsSource" >
-    update tbl_goods_source
-    set DEPATURE_AREA_ID = #{depatureAreaId,jdbcType=INTEGER},
-      DESTINATION_AREA_ID = #{destinationAreaId,jdbcType=INTEGER},
-      DEPATURE_TIME = #{depatureTime,jdbcType=BIGINT},
-      ARRIVAL_TIME = #{arrivalTime,jdbcType=BIGINT},
-      TRANSPORT_TYPE = #{transportType,jdbcType=INTEGER},
-      GOODS_TYPE = #{goodsType,jdbcType=INTEGER},
-      CAR_TYPE = #{carType,jdbcType=INTEGER},
-      NEED_CAR_NUMBER = #{needCarNumber,jdbcType=INTEGER},
-      GOODS_DESCRIPTION = #{goodsDescription,jdbcType=VARCHAR},
-      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
-      GOODS_WEIGHT = #{goodsWeight,jdbcType=INTEGER},
-      GOODS_VOLUME = #{goodsVolume,jdbcType=INTEGER},
-      LINGDAN_PRICE = #{lingdanPrice,jdbcType=INTEGER},
-      ZHENGCHE_PRICE = #{zhengchePrice,jdbcType=INTEGER},
-      PRICE_OF_EVERY_TON = #{priceOfEveryTon,jdbcType=INTEGER},
-      PRICE_OF_EVERY_VOLUME = #{priceOfEveryVolume,jdbcType=INTEGER},
-      DELIVERY_COMPANY = #{deliveryCompany,jdbcType=VARCHAR},
-      DELIVERY_ADDRESS = #{deliveryAddress,jdbcType=VARCHAR},
-      CONTACT_USER_NAME = #{contactUserName,jdbcType=VARCHAR},
-      CONTACT_USER_MOBILE = #{contactUserMobile,jdbcType=VARCHAR},
-      CONTACT_USER_PHONE = #{contactUserPhone,jdbcType=VARCHAR},
-      CONTACT_USER_EMAIL = #{contactUserEmail,jdbcType=VARCHAR},
-      CONTACT_USER_QQ = #{contactUserQq,jdbcType=VARCHAR},
-      CONTACT_USER_WECHAT = #{contactUserWechat,jdbcType=VARCHAR},
-      PUBLISH_TIME = #{publishTime,jdbcType=BIGINT},
-      PUBLISH_USER_ID = #{publishUserId,jdbcType=INTEGER}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <select resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.GoodsSourceExample" id="selectByExampleWithRowbounds" >
+  <select resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.GoodsSourceViewExample" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tbl_goods_source
+    from vw_goods_source
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>

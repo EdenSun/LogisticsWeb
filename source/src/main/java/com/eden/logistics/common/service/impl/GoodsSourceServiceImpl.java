@@ -1,18 +1,26 @@
 package com.eden.logistics.common.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.eden.logistics.common.dao.GoodsSourceMapper;
+import com.eden.logistics.common.dao.GoodsSourceViewMapper;
 import com.eden.logistics.common.domain.GoodsSource;
+import com.eden.logistics.common.domain.GoodsSourceView;
+import com.eden.logistics.common.domain.GoodsSourceViewExample;
 import com.eden.logistics.common.dto.param.CreateGoodsSourceParam;
+import com.eden.logistics.common.dto.param.ListGoodsSourceByCondParam;
 import com.eden.logistics.common.exception.ServiceException;
 import com.eden.logistics.common.service.IGoodsSourceService;
+import com.eden.logistics.common.util.AssertUtil;
 import com.eden.logistics.common.util.CurrencyHelper;
 import com.eden.logistics.common.util.DateHelper;
+import com.eden.logistics.common.util.DateUtil;
 import com.eden.logistics.common.util.VolumeHelper;
 import com.eden.logistics.common.util.WeightHelper;
 
@@ -21,6 +29,8 @@ public class GoodsSourceServiceImpl implements IGoodsSourceService {
 	private Logger logger = Logger.getLogger(this.getClass());
 	@Autowired
 	private GoodsSourceMapper goodsSourceMapper;
+	@Autowired
+	private GoodsSourceViewMapper goodsSourceViewMapper;
 	
 	@Override	
 	public void createGoodsSource(CreateGoodsSourceParam param) throws ServiceException {
@@ -48,8 +58,8 @@ public class GoodsSourceServiceImpl implements IGoodsSourceService {
 		}
 		GoodsSource goodsSource = new GoodsSource();
 		
-		goodsSource.setArrivalTime( DateHelper.parseDate( param.getArrivalTime() , "yyyy-MM-dd") );
-		goodsSource.setDepatureTime( DateHelper.parseDate( param.getDepatureTime() , "yyyy-MM-dd") );
+		goodsSource.setArrivalTime( DateHelper.parseDate( param.getArrivalTime() , "yyyy-MM-dd").getTime() );
+		goodsSource.setDepatureTime( DateHelper.parseDate( param.getDepatureTime() , "yyyy-MM-dd").getTime() );
 		goodsSource.setCarType(param.getCarType());
 		goodsSource.setContactUserEmail(param.getContactUserEmail());
 		goodsSource.setContactUserMobile(param.getContactUserMobile());
@@ -170,4 +180,56 @@ public class GoodsSourceServiceImpl implements IGoodsSourceService {
 		}
 	}
 
+	@Override
+	public List<GoodsSourceView> listByCond(ListGoodsSourceByCondParam param) throws ServiceException {
+		GoodsSourceViewExample example = trans2GoodsSourceViewExample(param);
+		
+		int pageSize = param.getPageSize();
+		RowBounds rowBounds = new RowBounds(0, pageSize);
+		List<GoodsSourceView> goodsSourceViewList = goodsSourceViewMapper.selectByExampleWithRowbounds(example, rowBounds);
+
+		return goodsSourceViewList;
+	}
+	
+	
+	private GoodsSourceViewExample trans2GoodsSourceViewExample(ListGoodsSourceByCondParam param) {
+		if( param == null ){
+			return new GoodsSourceViewExample();
+		}
+		
+		GoodsSourceViewExample example = new GoodsSourceViewExample();
+		GoodsSourceViewExample.Criteria c = example.createCriteria();
+		c.andPublishTimeIntLessThan(param.getOldestTime());
+		
+		if( AssertUtil.isNotEmpty(param.getDepatureAreaId()) ){
+			c.andDepatureAreaIdEqualTo(param.getDepatureAreaId());
+		}
+		
+		if( AssertUtil.isNotEmpty(param.getDestinationAreaId()) ){
+			c.andDestinationAreaIdEqualTo(param.getDestinationAreaId());
+		}
+		
+		if( AssertUtil.isNotEmpty(param.getCarTypeId()) ){
+			c.andCarTypeIdEqualTo(param.getCarTypeId());
+		}
+		
+		if( AssertUtil.isNotEmpty(param.getArrivalTime()) ){
+			c.andArrivalTimeEqualTo(param.getArrivalTime());
+		}
+		
+		if( AssertUtil.isNotEmpty(param.getDepatureTime()) ){
+			c.andDepatureTimeEqualTo(param.getDepatureTime());
+		}
+		
+		if( AssertUtil.isNotEmpty(param.getGoodsTypeId()) ){
+			c.andGoodsTypeIdEqualTo(param.getGoodsTypeId());
+		}
+		if( AssertUtil.isNotEmpty(param.getTransportTypeId()) ){
+			c.andTransportTypeIdEqualTo(param.getTransportTypeId());
+		}
+		
+		example.setOrderByClause("PUBLISH_TIME_INT DESC");
+		return example;
+	}
+	
 }

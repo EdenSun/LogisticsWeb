@@ -1,7 +1,5 @@
 package com.eden.logistics.common.domain;
 
-import java.util.Date;
-
 public class GoodsSource {
     private Integer id;
 
@@ -9,9 +7,9 @@ public class GoodsSource {
 
     private Integer destinationAreaId;
 
-    private Date depatureTime;
+    private Long depatureTime;
 
-    private Date arrivalTime;
+    private Long arrivalTime;
 
     private Integer transportType;
 
@@ -81,19 +79,19 @@ public class GoodsSource {
         this.destinationAreaId = destinationAreaId;
     }
 
-    public Date getDepatureTime() {
+    public Long getDepatureTime() {
         return depatureTime;
     }
 
-    public void setDepatureTime(Date depatureTime) {
+    public void setDepatureTime(Long depatureTime) {
         this.depatureTime = depatureTime;
     }
 
-    public Date getArrivalTime() {
+    public Long getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Date arrivalTime) {
+    public void setArrivalTime(Long arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
