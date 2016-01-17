@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.eden.logistics.api.dto.view.CarSourceDetailView;
 import com.eden.logistics.api.dto.view.CarSourceListItemView;
+import com.eden.logistics.api.dto.view.FileView;
 import com.eden.logistics.api.service.IApiCarSourceService;
+import com.eden.logistics.common.domain.CarSourceImageView;
 import com.eden.logistics.common.domain.CarSourceView;
 import com.eden.logistics.common.domain.User;
 import com.eden.logistics.common.dto.param.CreateCarSourceParam;
@@ -154,11 +156,42 @@ public class ApiCarSourceServiceImpl implements IApiCarSourceService {
 		view.setPublishUserId(carSourceView.getPublishUserId());
 		view.setPublishUserNickname(carSourceView.getPublishUserNickname());
 
-		//TODO: Í¼Æ¬ºÍÆÀÂÛ
-		//view.setImgList(imgList);
+		List<CarSourceImageView> carSourceImageViewList = carSourceService.listCarSourceImageViewByCarSourceId(carSourceView.getId());
+		List<FileView> fileViewList = trans2FileViewList(carSourceImageViewList);
+		view.setImgList(fileViewList);
+		
+		//TODO: ÆÀÂÛ
 		//view.setCommentList(carSourceView.get);
 		
 		return view;
+	}
+
+	private List<FileView> trans2FileViewList(List<CarSourceImageView> carSourceImageViewList) {
+		if( carSourceImageViewList == null ){
+			return null;
+		}
+		List<FileView> list = new ArrayList<FileView>();
+		FileView view = null;
+		
+		for(CarSourceImageView imgView : carSourceImageViewList){
+			view = trans2FileView(imgView);
+			if( view != null ){
+				list.add(view);
+			}
+		}
+		
+		return list;
+	}
+
+	private FileView trans2FileView(CarSourceImageView imgView) {
+		if( imgView == null ){
+			return null;
+		}
+		FileView fileView = new FileView();
+		fileView.setId(imgView.getImgFileId());
+		fileView.setPath(imgView.getImgFilePath());
+		
+		return fileView;
 	}
 
 	

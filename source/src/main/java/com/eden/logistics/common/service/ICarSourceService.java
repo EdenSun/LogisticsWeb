@@ -2,6 +2,8 @@ package com.eden.logistics.common.service;
 
 import java.util.List;
 
+import com.eden.logistics.common.domain.CarSource;
+import com.eden.logistics.common.domain.CarSourceImageView;
 import com.eden.logistics.common.domain.CarSourceView;
 import com.eden.logistics.common.dto.param.CreateCarSourceParam;
 import com.eden.logistics.common.dto.param.ListCarSourceByCondParam;
@@ -14,5 +16,9 @@ public interface ICarSourceService {
 	List<CarSourceView> listByCond(ListCarSourceByCondParam param)throws ServiceException;
 
 	CarSourceView getCarSourceViewById(Integer carSourceId)throws ServiceException;
+
+	CarSource getById(Integer carSourceId)throws ServiceException;
+
+	List<CarSourceImageView> listCarSourceImageViewByCarSourceId(Integer carSourceId)throws ServiceException;
 
 }

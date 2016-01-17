@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-  <classPathEntry location="c:\eden\libs\mysql-connector-java-5.1.35.jar" />
-  <!--<classPathEntry location="d:\lib\mysql-connector-java-5.1.35.jar" />-->
+   <!--<classPathEntry location="c:\eden\libs\mysql-connector-java-5.1.35.jar" />-->
+  <classPathEntry location="d:\lib\mysql-connector-java-5.1.35.jar" />
   <context id="DB2Tables" targetRuntime="MyBatis3">
 		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
 		<!--去除注释 （true好像不起作用） -->
@@ -42,6 +42,7 @@
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		
+		<!--
 		<table tableName="tbl_user" domainObjectName="User">
 			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
 		</table>
@@ -76,5 +77,18 @@
 		</table>
 		<table tableName="vw_goods_source" domainObjectName="GoodsSourceView">
 		</table>
+		<table tableName="tbl_car_source_image" domainObjectName="CarSourceImage">
+			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
+		</table>
+		
+		<table tableName="tbl_goods_source_image" domainObjectName="GoodsSourceImage">
+			<generatedKey column="ID" sqlStatement="MySql" identity="true"/>
+		</table>
+		-->
+		
+		<table tableName="vw_car_source_image" domainObjectName="CarSourceImageView">
+		</table>
+	
+		
 	</context>
 </generatorConfiguration>

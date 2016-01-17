@@ -1,5 +1,7 @@
 package com.eden.logistics.common.dto.param;
 
+import java.util.List;
+
 public class CreateCarSourceParam {
 	private Integer depatureAreaId;
 
@@ -34,6 +36,8 @@ public class CreateCarSourceParam {
 	private String contactUserWechat;
 
 	private Integer publishUserId;
+	
+	private List<Integer> imgIdList;
 	
 	public Integer getDepatureAreaId() {
 		return depatureAreaId;
@@ -169,6 +173,14 @@ public class CreateCarSourceParam {
 
 	public void setPublishUserId(Integer publishUserId) {
 		this.publishUserId = publishUserId;
+	}
+
+	public List<Integer> getImgIdList() {
+		return imgIdList;
+	}
+
+	public void setImgIdList(List<Integer> imgIdList) {
+		this.imgIdList = imgIdList;
 	}
 
 }

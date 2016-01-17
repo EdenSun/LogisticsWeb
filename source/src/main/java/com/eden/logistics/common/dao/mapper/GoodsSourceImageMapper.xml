@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eden.logistics.common.dao.GoodsSourceImageMapper" >
+  <resultMap id="BaseResultMap" type="com.eden.logistics.common.domain.GoodsSourceImage" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="GOODS_SOURCE_ID" property="goodsSourceId" jdbcType="INTEGER" />
+    <result column="IMAGE_FILE_ID" property="imageFileId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, GOODS_SOURCE_ID, IMAGE_FILE_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.GoodsSourceImageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_goods_source_image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_goods_source_image
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_goods_source_image
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.eden.logistics.common.domain.GoodsSourceImageExample" >
+    delete from tbl_goods_source_image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.eden.logistics.common.domain.GoodsSourceImage" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tbl_goods_source_image (GOODS_SOURCE_ID, IMAGE_FILE_ID)
+    values (#{goodsSourceId,jdbcType=INTEGER}, #{imageFileId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eden.logistics.common.domain.GoodsSourceImage" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tbl_goods_source_image
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsSourceId != null" >
+        GOODS_SOURCE_ID,
+      </if>
+      <if test="imageFileId != null" >
+        IMAGE_FILE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsSourceId != null" >
+        #{goodsSourceId,jdbcType=INTEGER},
+      </if>
+      <if test="imageFileId != null" >
+        #{imageFileId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.eden.logistics.common.domain.GoodsSourceImageExample" resultType="java.lang.Integer" >
+    select count(*) from tbl_goods_source_image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_goods_source_image
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsSourceId != null" >
+        GOODS_SOURCE_ID = #{record.goodsSourceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.imageFileId != null" >
+        IMAGE_FILE_ID = #{record.imageFileId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_goods_source_image
+    set ID = #{record.id,jdbcType=INTEGER},
+      GOODS_SOURCE_ID = #{record.goodsSourceId,jdbcType=INTEGER},
+      IMAGE_FILE_ID = #{record.imageFileId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eden.logistics.common.domain.GoodsSourceImage" >
+    update tbl_goods_source_image
+    <set >
+      <if test="goodsSourceId != null" >
+        GOODS_SOURCE_ID = #{goodsSourceId,jdbcType=INTEGER},
+      </if>
+      <if test="imageFileId != null" >
+        IMAGE_FILE_ID = #{imageFileId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eden.logistics.common.domain.GoodsSourceImage" >
+    update tbl_goods_source_image
+    set GOODS_SOURCE_ID = #{goodsSourceId,jdbcType=INTEGER},
+      IMAGE_FILE_ID = #{imageFileId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.GoodsSourceImageExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_goods_source_image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

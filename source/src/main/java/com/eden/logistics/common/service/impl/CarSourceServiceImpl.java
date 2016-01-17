@@ -8,17 +8,21 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.eden.logistics.common.dao.CarSourceImageViewMapper;
 import com.eden.logistics.common.dao.CarSourceMapper;
 import com.eden.logistics.common.dao.CarSourceViewMapper;
 import com.eden.logistics.common.domain.CarSource;
+import com.eden.logistics.common.domain.CarSourceImageView;
+import com.eden.logistics.common.domain.CarSourceImageViewExample;
 import com.eden.logistics.common.domain.CarSourceView;
 import com.eden.logistics.common.domain.CarSourceViewExample;
 import com.eden.logistics.common.dto.param.CreateCarSourceParam;
 import com.eden.logistics.common.dto.param.ListCarSourceByCondParam;
 import com.eden.logistics.common.exception.ServiceException;
+import com.eden.logistics.common.service.ICarSourceImageService;
 import com.eden.logistics.common.service.ICarSourceService;
+import com.eden.logistics.common.service.IFileService;
 import com.eden.logistics.common.util.AssertUtil;
-import com.eden.logistics.common.util.PagerUtil;
 
 @Service
 public class CarSourceServiceImpl implements ICarSourceService {
@@ -30,6 +34,15 @@ public class CarSourceServiceImpl implements ICarSourceService {
 	@Autowired
 	private CarSourceViewMapper carSourceViewMapper;
 	
+	@Autowired
+	private IFileService FileService;
+	
+	@Autowired
+	private ICarSourceImageService carSourceImageService;
+	
+	@Autowired
+	private CarSourceImageViewMapper carSourceImageViewMapper;
+	
 	@Override
 	public void createCarSource(CreateCarSourceParam param) throws ServiceException {
 		try {
@@ -37,6 +50,11 @@ public class CarSourceServiceImpl implements ICarSourceService {
 			
 			CarSource carSource = trans2CarSource(param);
 			this.save(carSource);
+			
+			// save car source images
+			List<Integer> imgIdList = param.getImgIdList();
+			carSourceImageService.addCarSourceImage( carSource.getId(), imgIdList);
+			
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
 			throw new ServiceException(e.getMessage(),e);
@@ -147,8 +165,34 @@ public class CarSourceServiceImpl implements ICarSourceService {
 			throw new ServiceException("Car Source ID²»¿ÉÎª¿Õ");
 		}
 		
-		//CarSourceView carSourceView = 
+		CarSourceViewExample example = new CarSourceViewExample();
+		CarSourceViewExample.Criteria c = example.createCriteria();
+		
+		c.andIdEqualTo(carSourceId);
+		
+		List<CarSourceView> list = carSourceViewMapper.selectByExample(example);
+		if( list != null && list.size() > 0 ){
+			return list.get(0);
+		}
 		return null;
 	}
 
+	@Override
+	public CarSource getById(Integer carSourceId) throws ServiceException {
+		return carSourceMapper.selectByPrimaryKey(carSourceId);
+	}
+
+	@Override
+	public List<CarSourceImageView> listCarSourceImageViewByCarSourceId(Integer carSourceId) throws ServiceException {
+		CarSourceImageViewExample example = new CarSourceImageViewExample();
+		CarSourceImageViewExample.Criteria c = example.createCriteria();
+		
+		c.andCarSourceIdEqualTo(carSourceId);
+		
+		List<CarSourceImageView> list = carSourceImageViewMapper.selectByExampleWithBLOBs(example);
+		
+		return list;
+	}
+
+	
 }

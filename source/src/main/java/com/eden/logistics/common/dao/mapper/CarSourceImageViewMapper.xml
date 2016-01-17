@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eden.logistics.common.dao.CarSourceImageViewMapper" >
+  <resultMap id="BaseResultMap" type="com.eden.logistics.common.domain.CarSourceImageView" >
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CAR_SOURCE_ID" property="carSourceId" jdbcType="INTEGER" />
+    <result column="IMG_FILE_ID" property="imgFileId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.eden.logistics.common.domain.CarSourceImageView" extends="BaseResultMap" >
+    <result column="IMG_FILE_PATH" property="imgFilePath" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CAR_SOURCE_ID, IMG_FILE_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    IMG_FILE_PATH
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.eden.logistics.common.domain.CarSourceImageViewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vw_car_source_image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.CarSourceImageViewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vw_car_source_image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.eden.logistics.common.domain.CarSourceImageViewExample" >
+    delete from vw_car_source_image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.eden.logistics.common.domain.CarSourceImageView" >
+    insert into vw_car_source_image (ID, CAR_SOURCE_ID, IMG_FILE_ID, 
+      IMG_FILE_PATH)
+    values (#{id,jdbcType=INTEGER}, #{carSourceId,jdbcType=INTEGER}, #{imgFileId,jdbcType=INTEGER}, 
+      #{imgFilePath,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eden.logistics.common.domain.CarSourceImageView" >
+    insert into vw_car_source_image
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="carSourceId != null" >
+        CAR_SOURCE_ID,
+      </if>
+      <if test="imgFileId != null" >
+        IMG_FILE_ID,
+      </if>
+      <if test="imgFilePath != null" >
+        IMG_FILE_PATH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="carSourceId != null" >
+        #{carSourceId,jdbcType=INTEGER},
+      </if>
+      <if test="imgFileId != null" >
+        #{imgFileId,jdbcType=INTEGER},
+      </if>
+      <if test="imgFilePath != null" >
+        #{imgFilePath,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.eden.logistics.common.domain.CarSourceImageViewExample" resultType="java.lang.Integer" >
+    select count(*) from vw_car_source_image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vw_car_source_image
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.carSourceId != null" >
+        CAR_SOURCE_ID = #{record.carSourceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.imgFileId != null" >
+        IMG_FILE_ID = #{record.imgFileId,jdbcType=INTEGER},
+      </if>
+      <if test="record.imgFilePath != null" >
+        IMG_FILE_PATH = #{record.imgFilePath,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update vw_car_source_image
+    set ID = #{record.id,jdbcType=INTEGER},
+      CAR_SOURCE_ID = #{record.carSourceId,jdbcType=INTEGER},
+      IMG_FILE_ID = #{record.imgFileId,jdbcType=INTEGER},
+      IMG_FILE_PATH = #{record.imgFilePath,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vw_car_source_image
+    set ID = #{record.id,jdbcType=INTEGER},
+      CAR_SOURCE_ID = #{record.carSourceId,jdbcType=INTEGER},
+      IMG_FILE_ID = #{record.imgFileId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select resultMap="ResultMapWithBLOBs" parameterType="com.eden.logistics.common.domain.CarSourceImageViewExample" id="selectByExampleWithBLOBsWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vw_car_source_image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select resultMap="BaseResultMap" parameterType="com.eden.logistics.common.domain.CarSourceImageViewExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vw_car_source_image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

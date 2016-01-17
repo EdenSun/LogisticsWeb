@@ -52,4 +52,10 @@ public class FileServiceImpl implements IFileService {
 			}
 		}
 	}
+
+	@Override
+	public File getById(Integer fileId) throws ServiceException {
+		return fileMapper.selectByPrimaryKey(fileId);
+	}
+	
 }

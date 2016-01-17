@@ -2,8 +2,6 @@ package com.eden.logistics.api.dto.view;
 
 import java.util.List;
 
-import javax.swing.filechooser.FileView;
-
 public class CarSourceDetailView {
 	private Integer id;
 
