@@ -8,4 +8,6 @@ public interface ICarSourceImageService {
 
 	void addCarSourceImage(Integer carSourceId, List<Integer> imgIdList)throws ServiceException;
 
+	String getFirstImageUrl(Integer carSourceId)throws ServiceException;
+
 }

@@ -18,6 +18,7 @@ import com.eden.logistics.common.dto.param.CreateCarSourceParam;
 import com.eden.logistics.common.dto.param.ListCarSourceByCondParam;
 import com.eden.logistics.common.dto.view.View;
 import com.eden.logistics.common.exception.ServiceException;
+import com.eden.logistics.common.service.ICarSourceImageService;
 import com.eden.logistics.common.service.ICarSourceService;
 import com.eden.logistics.common.service.IUserService;
 @Service
@@ -29,6 +30,9 @@ public class ApiCarSourceServiceImpl implements IApiCarSourceService {
 	
 	@Autowired
 	private ICarSourceService carSourceService;
+	
+	@Autowired
+	private ICarSourceImageService carSourceImageService;
 	
 	@Override
 	public View<Boolean> create(String token,CreateCarSourceParam param) throws ServiceException {
@@ -104,6 +108,10 @@ public class ApiCarSourceServiceImpl implements IApiCarSourceService {
 		view.setId(carSourceView.getId());
 		view.setPublishTime(carSourceView.getPublishTime());
 		view.setPublishTimeInt(carSourceView.getPublishTimeInt());
+		
+		//获取车源图片
+		String firstImageUrl = carSourceImageService.getFirstImageUrl(carSourceView.getId());
+		view.setCarImageUrl(firstImageUrl);
 		
 		return view;
 	}

@@ -22,7 +22,9 @@ public class CarSourceListItemView {
 	private String publishTime;
 
 	private Long publishTimeInt;
-
+	
+	private String carImageUrl;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -109,6 +111,14 @@ public class CarSourceListItemView {
 
 	public void setPublishTimeInt(Long publishTimeInt) {
 		this.publishTimeInt = publishTimeInt;
+	}
+
+	public String getCarImageUrl() {
+		return carImageUrl;
+	}
+
+	public void setCarImageUrl(String carImageUrl) {
+		this.carImageUrl = carImageUrl;
 	}
 	
 }

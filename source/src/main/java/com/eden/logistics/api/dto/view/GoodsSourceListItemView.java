@@ -39,6 +39,8 @@ public class GoodsSourceListItemView {
 
 	private String publishUserNickname;
 
+	private String goodsImageUrl;
+
 	public Integer getId() {
 		return id;
 	}
@@ -189,5 +191,13 @@ public class GoodsSourceListItemView {
 
 	public void setPublishUserNickname(String publishUserNickname) {
 		this.publishUserNickname = publishUserNickname;
+	}
+
+	public String getGoodsImageUrl() {
+		return goodsImageUrl;
+	}
+
+	public void setGoodsImageUrl(String goodsImageUrl) {
+		this.goodsImageUrl = goodsImageUrl;
 	}
 }

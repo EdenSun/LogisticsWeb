@@ -3,14 +3,14 @@ package com.eden.logistics.common.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarSourceImageViewExample {
+public class GoodsSourceImageViewExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public CarSourceImageViewExample() {
+    public GoodsSourceImageViewExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -164,63 +164,63 @@ public class CarSourceImageViewExample {
             return (Criteria) this;
         }
 
-        public Criteria andCarSourceIdIsNull() {
-            addCriterion("CAR_SOURCE_ID is null");
+        public Criteria andGoodsSourceIdIsNull() {
+            addCriterion("GOODS_SOURCE_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andCarSourceIdIsNotNull() {
-            addCriterion("CAR_SOURCE_ID is not null");
+        public Criteria andGoodsSourceIdIsNotNull() {
+            addCriterion("GOODS_SOURCE_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCarSourceIdEqualTo(Integer value) {
-            addCriterion("CAR_SOURCE_ID =", value, "carSourceId");
+        public Criteria andGoodsSourceIdEqualTo(Integer value) {
+            addCriterion("GOODS_SOURCE_ID =", value, "goodsSourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCarSourceIdNotEqualTo(Integer value) {
-            addCriterion("CAR_SOURCE_ID <>", value, "carSourceId");
+        public Criteria andGoodsSourceIdNotEqualTo(Integer value) {
+            addCriterion("GOODS_SOURCE_ID <>", value, "goodsSourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCarSourceIdGreaterThan(Integer value) {
-            addCriterion("CAR_SOURCE_ID >", value, "carSourceId");
+        public Criteria andGoodsSourceIdGreaterThan(Integer value) {
+            addCriterion("GOODS_SOURCE_ID >", value, "goodsSourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCarSourceIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("CAR_SOURCE_ID >=", value, "carSourceId");
+        public Criteria andGoodsSourceIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("GOODS_SOURCE_ID >=", value, "goodsSourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCarSourceIdLessThan(Integer value) {
-            addCriterion("CAR_SOURCE_ID <", value, "carSourceId");
+        public Criteria andGoodsSourceIdLessThan(Integer value) {
+            addCriterion("GOODS_SOURCE_ID <", value, "goodsSourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCarSourceIdLessThanOrEqualTo(Integer value) {
-            addCriterion("CAR_SOURCE_ID <=", value, "carSourceId");
+        public Criteria andGoodsSourceIdLessThanOrEqualTo(Integer value) {
+            addCriterion("GOODS_SOURCE_ID <=", value, "goodsSourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCarSourceIdIn(List<Integer> values) {
-            addCriterion("CAR_SOURCE_ID in", values, "carSourceId");
+        public Criteria andGoodsSourceIdIn(List<Integer> values) {
+            addCriterion("GOODS_SOURCE_ID in", values, "goodsSourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCarSourceIdNotIn(List<Integer> values) {
-            addCriterion("CAR_SOURCE_ID not in", values, "carSourceId");
+        public Criteria andGoodsSourceIdNotIn(List<Integer> values) {
+            addCriterion("GOODS_SOURCE_ID not in", values, "goodsSourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCarSourceIdBetween(Integer value1, Integer value2) {
-            addCriterion("CAR_SOURCE_ID between", value1, value2, "carSourceId");
+        public Criteria andGoodsSourceIdBetween(Integer value1, Integer value2) {
+            addCriterion("GOODS_SOURCE_ID between", value1, value2, "goodsSourceId");
             return (Criteria) this;
         }
 
-        public Criteria andCarSourceIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("CAR_SOURCE_ID not between", value1, value2, "carSourceId");
+        public Criteria andGoodsSourceIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("GOODS_SOURCE_ID not between", value1, value2, "goodsSourceId");
             return (Criteria) this;
         }
 

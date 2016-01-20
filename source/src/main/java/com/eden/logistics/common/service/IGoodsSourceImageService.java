@@ -8,4 +8,6 @@ public interface IGoodsSourceImageService {
 
 	void addGoodsSourceImage(Integer goodsSourceId, List<Integer> imgIdList)throws ServiceException;
 
+	String getFirstImageUrl(Integer goodsSourceId)throws ServiceException;
+
 }

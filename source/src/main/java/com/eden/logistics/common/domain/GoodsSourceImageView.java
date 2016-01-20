@@ -1,9 +1,9 @@
 package com.eden.logistics.common.domain;
 
-public class CarSourceImageView {
+public class GoodsSourceImageView {
     private Integer id;
 
-    private Integer carSourceId;
+    private Integer goodsSourceId;
 
     private Integer imgFileId;
 
@@ -21,12 +21,12 @@ public class CarSourceImageView {
         this.id = id;
     }
 
-    public Integer getCarSourceId() {
-        return carSourceId;
+    public Integer getGoodsSourceId() {
+        return goodsSourceId;
     }
 
-    public void setCarSourceId(Integer carSourceId) {
-        this.carSourceId = carSourceId;
+    public void setGoodsSourceId(Integer goodsSourceId) {
+        this.goodsSourceId = goodsSourceId;
     }
 
     public Integer getImgFileId() {

@@ -7,17 +7,16 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.eden.logistics.api.dto.view.CarSourceListItemView;
 import com.eden.logistics.api.dto.view.GoodsSourceDetailView;
 import com.eden.logistics.api.dto.view.GoodsSourceListItemView;
 import com.eden.logistics.api.service.IApiGoodsSourceService;
-import com.eden.logistics.common.domain.CarSourceView;
 import com.eden.logistics.common.domain.GoodsSourceView;
 import com.eden.logistics.common.domain.User;
 import com.eden.logistics.common.dto.param.CreateGoodsSourceParam;
 import com.eden.logistics.common.dto.param.ListGoodsSourceByCondParam;
 import com.eden.logistics.common.dto.view.View;
 import com.eden.logistics.common.exception.ServiceException;
+import com.eden.logistics.common.service.IGoodsSourceImageService;
 import com.eden.logistics.common.service.IGoodsSourceService;
 import com.eden.logistics.common.service.IUserService;
 
@@ -28,6 +27,8 @@ public class ApiGoodsSourceServiceImpl implements IApiGoodsSourceService {
 	private IUserService userService;
 	@Autowired
 	private IGoodsSourceService goodsSourceService;
+	@Autowired
+	private IGoodsSourceImageService goodsSourceImageService;
 	
 	@Override
 	public View<Boolean> create(String token,CreateGoodsSourceParam param) throws ServiceException {
@@ -112,6 +113,10 @@ public class ApiGoodsSourceServiceImpl implements IApiGoodsSourceService {
 		view.setPublishUserNickname(goodsSourceView.getPublishUserNickname());
 		view.setTransportType(goodsSourceView.getTransportType());
 		view.setZhengchePrice(goodsSourceView.getZhengchePrice());
+		
+		//获取车源图片
+		String firstImageUrl = goodsSourceImageService.getFirstImageUrl(goodsSourceView.getId());
+		view.setGoodsImageUrl(firstImageUrl);
 		
 		return view;
 	}

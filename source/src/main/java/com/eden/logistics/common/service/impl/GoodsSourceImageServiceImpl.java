@@ -2,13 +2,17 @@ package com.eden.logistics.common.service.impl;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.eden.logistics.common.dao.GoodsSourceImageMapper;
+import com.eden.logistics.common.dao.GoodsSourceImageViewMapper;
 import com.eden.logistics.common.domain.File;
 import com.eden.logistics.common.domain.GoodsSource;
 import com.eden.logistics.common.domain.GoodsSourceImage;
+import com.eden.logistics.common.domain.GoodsSourceImageView;
+import com.eden.logistics.common.domain.GoodsSourceImageViewExample;
 import com.eden.logistics.common.exception.ServiceException;
 import com.eden.logistics.common.service.IFileService;
 import com.eden.logistics.common.service.IGoodsSourceImageService;
@@ -18,6 +22,8 @@ import com.eden.logistics.common.service.IGoodsSourceService;
 public class GoodsSourceImageServiceImpl implements IGoodsSourceImageService {
 	@Autowired
 	private GoodsSourceImageMapper goodsSourceImageMapper;
+	@Autowired
+	private GoodsSourceImageViewMapper goodsSourceImageViewMapper;
 	@Autowired 
 	private IGoodsSourceService goodsSourceService;
 	@Autowired
@@ -53,4 +59,25 @@ public class GoodsSourceImageServiceImpl implements IGoodsSourceImageService {
 			goodsSourceImageMapper.insertSelective(img);
 		}
 	}
+
+	@Override
+	public String getFirstImageUrl(Integer goodsSourceId) throws ServiceException {
+		if( goodsSourceId == null ){
+			throw new ServiceException("Goods Source Id ²»¿ÉÎª¿Õ");
+		}
+		
+		GoodsSourceImageViewExample example = new GoodsSourceImageViewExample();
+		GoodsSourceImageViewExample.Criteria c = example.createCriteria();
+
+		c.andGoodsSourceIdEqualTo(goodsSourceId);
+		
+		RowBounds rowBounds = new RowBounds(0,1);
+		List<GoodsSourceImageView> list = goodsSourceImageViewMapper.selectByExampleWithBLOBsWithRowbounds(example, rowBounds);
+		if( list != null && list.size() > 0 ){
+			return list.get(0).getImgFilePath();
+		}
+		
+		return null;
+	}
+	
 }
