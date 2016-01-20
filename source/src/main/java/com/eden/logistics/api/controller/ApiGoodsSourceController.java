@@ -16,6 +16,7 @@ import com.eden.logistics.common.dto.param.CreateGoodsSourceParam;
 import com.eden.logistics.common.dto.param.ListGoodsSourceByCondParam;
 import com.eden.logistics.common.dto.view.View;
 import com.eden.logistics.common.util.Constants;
+import com.eden.logistics.common.util.ListUtil;
 
 @Controller
 @RequestMapping("/api/goodssource")
@@ -26,8 +27,11 @@ public class ApiGoodsSourceController {
 	private IApiGoodsSourceService apiGoodsSourceService;
 	
 	@RequestMapping("/create")
-	public View<Boolean> create(@ModelAttribute("param")CreateGoodsSourceParam param){
+	public View<Boolean> create(String imgIdListStr , @ModelAttribute("param")CreateGoodsSourceParam param){
 		String token = request.getHeader(Constants.HTTP_HEAD_KEY_ACCESS_TOKEN);
+		
+		List<Integer> imageIdList = ListUtil.separateStringToIntList(imgIdListStr, ",");
+		param.setImgIdList(imageIdList);
 		
 		View<Boolean> view = apiGoodsSourceService.create(token,param);
 		

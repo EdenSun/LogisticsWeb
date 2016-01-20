@@ -16,11 +16,11 @@ import com.eden.logistics.common.domain.GoodsSourceViewExample;
 import com.eden.logistics.common.dto.param.CreateGoodsSourceParam;
 import com.eden.logistics.common.dto.param.ListGoodsSourceByCondParam;
 import com.eden.logistics.common.exception.ServiceException;
+import com.eden.logistics.common.service.IGoodsSourceImageService;
 import com.eden.logistics.common.service.IGoodsSourceService;
 import com.eden.logistics.common.util.AssertUtil;
 import com.eden.logistics.common.util.CurrencyHelper;
 import com.eden.logistics.common.util.DateHelper;
-import com.eden.logistics.common.util.DateUtil;
 import com.eden.logistics.common.util.VolumeHelper;
 import com.eden.logistics.common.util.WeightHelper;
 
@@ -31,6 +31,8 @@ public class GoodsSourceServiceImpl implements IGoodsSourceService {
 	private GoodsSourceMapper goodsSourceMapper;
 	@Autowired
 	private GoodsSourceViewMapper goodsSourceViewMapper;
+	@Autowired
+	private IGoodsSourceImageService goodsSourceImageService;
 	
 	@Override	
 	public void createGoodsSource(CreateGoodsSourceParam param) throws ServiceException {
@@ -39,6 +41,11 @@ public class GoodsSourceServiceImpl implements IGoodsSourceService {
 			
 			GoodsSource goodsSource = trans2GoodsSource(param);
 			this.save(goodsSource);
+			
+			// save goods source images
+			List<Integer> imgIdList = param.getImgIdList();
+			goodsSourceImageService.addGoodsSourceImage( goodsSource.getId(), imgIdList);
+			
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
 			throw new ServiceException(e.getMessage(),e);
@@ -231,5 +238,10 @@ public class GoodsSourceServiceImpl implements IGoodsSourceService {
 		example.setOrderByClause("PUBLISH_TIME_INT DESC");
 		return example;
 	}
-	
+
+	@Override
+	public GoodsSource getById(Integer goodsSourceId) throws ServiceException {
+		return goodsSourceMapper.selectByPrimaryKey(goodsSourceId);
+	}
+
 }
